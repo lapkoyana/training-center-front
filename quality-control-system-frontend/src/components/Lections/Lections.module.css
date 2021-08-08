@@ -1,0 +1,43 @@
+.lectionItem {
+    margin-bottom: 10px;
+}
+
+.lectionItem button {
+    margin-left: 10px;
+    background-color: #282c34;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.questionLink {
+    text-decoration: none;
+    color: goldenrod;
+}
+
+.addingButton {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: #282c34;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #4CAF50;
+}
