@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import Lections from "./Lections";
 import { setLections, deleteLection } from '../../redux/lesson-reducer';
+import authHeader from '../../services/auth-header';
 
 class LectionsContainer extends React.Component {
     constructor(props) {
@@ -10,14 +11,17 @@ class LectionsContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/lections')
+        fetch('http://localhost:8080/lections', {
+            headers: authHeader()
+        })
             .then(response => response.json())
             .then(data => this.props.setLections(data));
     }
 
     remove(lectionId) {
         fetch('http://localhost:8080/lections/' + lectionId, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: authHeader()
         })
         .then(() => this.props.deleteLection(lectionId));
     }

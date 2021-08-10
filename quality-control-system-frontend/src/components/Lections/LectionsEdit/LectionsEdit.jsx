@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setLections, setCurrentLection, addLection, editLection } from '../../../redux/lesson-reducer';
+import authHeader from '../../../services/auth-header';
 
 class LectionEdit extends React.Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class LectionEdit extends React.Component {
 
     componentDidMount() {
         if (this.props.match.params.id !== 'new'){
-            fetch('http://localhost:8080/lections/' + this.props.match.params.id)
+            fetch('http://localhost:8080/lections/' + this.props.match.params.id, {
+                headers: authHeader()
+            })
                 .then(response => response.json())
                 .then(data => this.props.setCurrentLection(data));
         }
@@ -68,7 +71,8 @@ class LectionEdit extends React.Component {
 
         fetch('http://localhost:8080/lections', {
             method: currentMethod,
-            body: formData
+            headers: authHeader(),
+            body: formData,
         });
         if (currentLection.id){
             this.props.editLection(currentLection);
