@@ -1,5 +1,5 @@
-export const SET_MESSAGE = "SET_MESSAGE";
-export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+import {SET_MESSAGE,
+        CLEAR_MESSAGE} from './../type'
 
 export const setMessage = (message) => ({
     type: SET_MESSAGE,

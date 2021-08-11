@@ -1,14 +1,10 @@
 import AuthenticationService from "../../services/AuthenticationService";
-import { SET_MESSAGE } from "./message";
 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-export const LOGOUT = "LOGOUT";
-
-// это thunk! это thunk! это thunk!
-// поэтому я этого не понимаю ааааа
+import {REGISTER_SUCCESS,
+        REGISTER_FAIL,
+        LOGIN_SUCCESS,
+        LOGOUT,
+        SET_MESSAGE} from './../type'
 
 export const register = (username, password) => (dispatch) => {
     return AuthenticationService.register(username, password).then(

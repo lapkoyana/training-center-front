@@ -1,0 +1,14 @@
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+
+export const SET_LECTIONS = 'SET-LECTIONS';
+export const DELETE_LECTION = 'DELETE-LECTIONS';
+export const SET_CURRENT_LECTION = 'SET-CURRENT-LECTION'
+export const ADD_LECTION = 'ADD-LECTION'
+export const EDIT_LECTION = 'EDIT-LECTION'
+
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";

@@ -1,8 +1,8 @@
-const SET_LECTIONS = 'SET-LECTIONS';
-const DELETE_LECTION = 'DELETE-LECTIONS';
-const SET_CURRENT_LECTION = 'SET-CURRENT-LECTION'
-const ADD_LECTION = 'ADD-LECTION'
-const EDIT_LECTION = 'EDIT-LECTION'
+import {SET_LECTIONS,
+        DELETE_LECTION,
+        SET_CURRENT_LECTION,
+        ADD_LECTION,
+        EDIT_LECTION} from './../type'
 
 
 let initialState = {
@@ -68,13 +68,5 @@ const lectionReducer = (state = initialState, action) => {
             return state;
     }
 }
-
-export const setLections = (lections) => ({type: SET_LECTIONS, lections})
-export const deleteLection = (lectionId) => ({type: DELETE_LECTION, lectionId})
-export const setCurrentLection = (currentLection) => ({type: SET_CURRENT_LECTION, currentLection})
-export const addLection = (lection) => ({type: ADD_LECTION, lection})
-export const editLection = (lection) => ({type: EDIT_LECTION, lection})
-
-
 
 export default lectionReducer;
