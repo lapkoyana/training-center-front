@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setLections, setCurrentLection, addLection, editLection } from '../../../redux/lesson-reducer';
+import { setLections, setCurrentLection, addLection, editLection } from '../../../redux/reducers/lesson';
 import authHeader from '../../../services/auth-header';
 
 class LectionEdit extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Lections from "./Lections";
-import { setLections, deleteLection } from '../../redux/lesson-reducer';
+import { setLections, deleteLection } from '../../redux/reducers/lesson';
 import authHeader from '../../services/auth-header';
 
 class LectionsContainer extends React.Component {

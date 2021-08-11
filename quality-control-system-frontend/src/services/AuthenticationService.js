@@ -4,25 +4,32 @@ class AuthService {
     async login(username, password) {
         return await fetch(API_URL + "signin", {
             method: 'POST',
-            body: {username, password}
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username, password})
         })
-        .then((response) => {
-            if (response.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+        .then(response => response.json())
+        .then(data => {
+            if (data.accessToken) {
+              localStorage.setItem("user", JSON.stringify(data));
             }
-            return await response.data;
-        })
+    
+            return data;
+          });
     }
 
     logout() {
         localStorage.removeItem("user");
     }
 
-    //ну это тоже async, наверное
-    async register(username, password) {
-        return await fetch(API_URL + "signup", {
+    register(username, password) {
+        return fetch(API_URL + "signup", {
             method: 'POST',
-            body: {username, password}
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username, password})
         });
     }
 }

@@ -1,11 +1,11 @@
 import AuthenticationService from "../../services/AuthenticationService";
 import { SET_MESSAGE } from "./message";
 
-const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-const REGISTER_FAIL = "REGISTER_FAIL";
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_FAIL = "LOGIN_FAIL";
-const LOGOUT = "LOGOUT";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
 
 // это thunk! это thunk! это thunk!
 // поэтому я этого не понимаю ааааа

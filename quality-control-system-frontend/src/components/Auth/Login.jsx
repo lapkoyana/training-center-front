@@ -12,8 +12,8 @@ class Login extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
-            username = "",
-            password = ""
+            username: "",
+            password: ""
         };
     }
 
@@ -32,24 +32,24 @@ class Login extends React.Component {
     handleLogin(e) {
         e.preventDefault();
 
-        const { dispatch } = this.props;
+        const { dispatch, history } = this.props;
 
         dispatch(login(this.state.username, this.state.password))
         .then(() => {
-            this.props.history.push('/');
+            history.push("/");
             window.location.reload();
         })
     }
 
     render() {
-        const { isLoggedIn, message } = this.props;
+        const { isLoggedIn } = this.props;
 
         if (isLoggedIn) {
-            return <Redirect to="/profile" />;
+            return <Redirect to="/" />;
         }
 
         return (
-            <form id="formData" onSubmit={this.handleLogin}>
+            <form onSubmit={this.handleLogin}>
                 <div><label>
                     Логин:
                     <input type="text" name="username" onChange={this.onChangeUsername} value={this.state.username}/>
@@ -66,10 +66,8 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
-    const { message } = state.message;
     return {
       isLoggedIn,
-      message
     };
   }
   
