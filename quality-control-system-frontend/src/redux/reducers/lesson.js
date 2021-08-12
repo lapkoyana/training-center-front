@@ -25,13 +25,7 @@ const lectionReducer = (state = initialState, action) => {
         case ADD_LECTION: {
             return {
                 ...state,
-                lections: [...state.lections, action.lection],
-                currentLection: {
-                    topic: '',
-                    dateOfClass: '',
-                    lectureFile: undefined,
-                    signOfCompleteness: false
-                }
+                lections: [...state.lections, action.lection]
             }
         }
         case EDIT_LECTION: {
@@ -42,13 +36,7 @@ const lectionReducer = (state = initialState, action) => {
                         return action.lection;
                     }
                     return l;
-                }),
-                currentLection: {
-                    topic: '',
-                    dateOfClass: '',
-                    lectureFile: undefined,
-                    signOfCompleteness: false
-                }
+                })
             }
         }
         default:

@@ -14,7 +14,7 @@ const Lections = (props) => {
             <div>{l.signOfCompleteness
                 ? 'Лекция завершена'
                 : 'Лекция не завершена'}</div>
-            <Link className={style.questionLink} to='/lections/{lessonId}/questions'>Список вопросов</Link>
+            <Link className={style.questionLink} to={'/lections/' + l.id + '/questions'}>Список вопросов</Link>
             <Link to={"/lections/" + l.id}><button>Редактировать</button></Link>
             <button onClick={() => props.delete(l.id)}>Удалить</button>
         </div>)}

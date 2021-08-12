@@ -1,10 +1,15 @@
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
+export const REGISTER_FAIL = "REGISTER-FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_FAIL = "LOGIN-FAIL";
 export const LOGOUT = "LOGOUT";
 
 export const SET_LECTIONS = 'SET-LECTIONS';
 export const DELETE_LECTION = 'DELETE-LECTIONS';
 export const ADD_LECTION = 'ADD-LECTION'
 export const EDIT_LECTION = 'EDIT-LECTION'
+
+export const SET_QUESTIONS = 'SET-QUESTIONS';
+export const DELETE_QUESTIONS = 'DELETE-QUESTIONS';
+export const ADD_QUESTIONS = 'ADD-QUESTIONS'
+export const EDIT_QUESTIONS = 'EDIT-QUESTIONS'
