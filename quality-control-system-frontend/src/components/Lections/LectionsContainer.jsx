@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Lections from "./Lections";
-import { setLections, deleteLection } from '../../redux/reducers/lesson';
-import authHeader from '../../services/auth-header';
+import { setLections, deleteLection } from '../../redux/actions/lesson';
+import LectionsService from '../../services/LectionsService';
 
 class LectionsContainer extends React.Component {
     constructor(props) {
@@ -11,19 +11,14 @@ class LectionsContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/lections', {
-            headers: authHeader()
-        })
+        LectionsService.getLessons()
             .then(response => response.json())
             .then(data => this.props.setLections(data));
     }
 
     remove(lectionId) {
-        fetch('http://localhost:8080/lections/' + lectionId, {
-            method: 'DELETE',
-            headers: authHeader()
-        })
-        .then(() => this.props.deleteLection(lectionId));
+        LectionsService.delete(lectionId)
+        .then(() => this.props.deleteLection(lectionId)); // СДЕЛАЛА
     }
 
     render() {
@@ -34,7 +29,7 @@ class LectionsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        lections: state.lessonPage.lections
+        lections: state.lesson.lections
     }
 }
 

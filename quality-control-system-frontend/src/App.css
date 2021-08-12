@@ -11,3 +11,20 @@
 .App-content {
   margin-left: 25px;
 }
+
+.navbar {
+  display: inline;
+  margin-left: 25px;
+}
+
+.nav-item {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item a{
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+}

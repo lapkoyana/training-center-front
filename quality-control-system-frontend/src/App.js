@@ -12,8 +12,6 @@ import { history } from './helpers/history';
 import { clearMessage } from './redux/actions/message';
 
 
-// адрес в Answers очень под сомнением!!!
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -52,61 +50,55 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <nav>
-          <Link to={"/home"}>
-            Home
-          </Link>
-          <div>
-            {showLecturerBoard && (
-              <li>
-                <Link to={"/lecturer"}>
+          <nav className="App-header">
+            <div className="navbar">
+            <span className="nav-item">
+              <Link to={"/home"}>
+                Главная
+              </Link>
+            </span>
+            <span className="nav-item">
+              {showLecturerBoard && (
+                <Link to={"/lections"}>
                   Лекции (преп)
                 </Link>
-              </li>
-            )}
+              )}
 
-            {showStudentBoard && (
-              <li>
+              {showStudentBoard && (
                 <Link to={"/lessons"}>
                   Лекции (студ)
                 </Link>
-              </li>
-            )}
-          </div>
+              )}
+            </span>
 
-          {currentUser ? (
-            <div>
-              {currentUser.username}
-              <li className="nav-item">
+            {currentUser ? (
+              <span className="nav-item">
+                {currentUser.username}
                 <a href="/login" onClick={this.logOut}>
-                  LogOut
+                  Выйти
                 </a>
-              </li>
-            </div>
-          ) : (
-            <div>
-              <li>
+              </span>
+            ) : (
+              <span className="nav-item">
                 <Link to={"/login"}>
-                  Login
+                  Вход
                 </Link>
-              </li>
 
-              <li className="nav-item">
                 <Link to={"/register"}>
-                  Sign Up
+                  Регистрация
                 </Link>
-              </li>
+              </span>
+            )}
             </div>
-          )}
           </nav>
 
-          <div>
+          <div className="App-content">
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path='/lections' render={() => <LectionsContainer/>}/>
-              <Route path='/lections/:id' component={LectionsEdit}/>
+              <Route exact path='/lections' render={() => <LectionsContainer />} />
+              <Route path='/lections/:id' component={LectionsEdit} />
             </Switch>
           </div>
         </div>
