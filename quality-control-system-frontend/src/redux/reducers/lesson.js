@@ -1,18 +1,11 @@
 import {SET_LECTIONS,
         DELETE_LECTION,
-        SET_CURRENT_LECTION,
         ADD_LECTION,
         EDIT_LECTION} from './../type'
 
 
 let initialState = {
-    lections: [],
-    currentLection: {
-        topic: '',
-        dateOfClass: '',
-        lectureFile: null,
-        signOfCompleteness: false
-    }
+    lections: []
 };
 
 const lectionReducer = (state = initialState, action) => {
@@ -27,12 +20,6 @@ const lectionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 lections: state.lections.filter(l => l.id !== action.lectionId)
-            }
-        }
-        case SET_CURRENT_LECTION: {
-            return {
-                ...state,
-                currentLection: action.currentLection
             }
         }
         case ADD_LECTION: {

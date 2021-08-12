@@ -9,8 +9,6 @@ import Home from './components/Home/Home';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { history } from './helpers/history';
-import { clearMessage } from './redux/actions/message';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -22,10 +20,6 @@ class App extends React.Component {
       showStudentBoard: false,
       currentUser: undefined
     }
-
-    history.listen((location) => {
-      props.dispatch(clearMessage()); // clear message when changing location
-    });
   }
 
   componentDidMount() {

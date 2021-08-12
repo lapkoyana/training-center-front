@@ -32,11 +32,9 @@ class Login extends React.Component {
     handleLogin(e) {
         e.preventDefault();
 
-        const { dispatch, history } = this.props;
-
-        dispatch(login(this.state.username, this.state.password))
+        this.props.login(this.state.username, this.state.password)
         .then(() => {
-            history.push("/");
+            this.props.history.push("/");
             window.location.reload();
         })
     }
@@ -71,4 +69,4 @@ function mapStateToProps(state) {
     };
   }
   
-  export default connect(mapStateToProps)(Login);
+  export default connect(mapStateToProps, { login })(Login);

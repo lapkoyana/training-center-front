@@ -3,8 +3,7 @@ import AuthenticationService from "../../services/AuthenticationService";
 import {REGISTER_SUCCESS,
         REGISTER_FAIL,
         LOGIN_SUCCESS,
-        LOGOUT,
-        SET_MESSAGE} from './../type'
+        LOGOUT} from './../type'
 
 export const register = (username, password) => (dispatch) => {
     return AuthenticationService.register(username, password).then(
@@ -13,28 +12,12 @@ export const register = (username, password) => (dispatch) => {
                 type: REGISTER_SUCCESS
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: response.data.message
-            });
-
             return Promise.resolve();
         },
         (error) => {
-            const message = 
-                (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-                error.message ||
-                error.toString();
 
             dispatch({
                 type: REGISTER_FAIL
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: message
             });
 
             return Promise.reject();
@@ -51,21 +34,6 @@ export const login = (username, password) => (dispatch) => {
             });
 
             return Promise.resolve();
-        },
-        (error) => {
-            const message =
-                (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-                error.message ||
-                error.toString();
-            
-            dispatch({
-                type: SET_MESSAGE,
-                payload: message
-            });
-
-            return Promise.reject();
         }
     );
 };

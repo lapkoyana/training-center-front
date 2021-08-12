@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import Lections from "./Lections";
 import { setLections, deleteLection } from '../../redux/actions/lesson';
-import LectionsService from '../../services/LectionsService';
 
 class LectionsContainer extends React.Component {
     constructor(props) {
@@ -11,14 +10,11 @@ class LectionsContainer extends React.Component {
     }
 
     componentDidMount() {
-        LectionsService.getLessons()
-            .then(response => response.json())
-            .then(data => this.props.setLections(data));
+        this.props.setLections();
     }
 
     remove(lectionId) {
-        LectionsService.delete(lectionId)
-        .then(() => this.props.deleteLection(lectionId)); // СДЕЛАЛА
+        this.props.deleteLection(lectionId);
     }
 
     render() {

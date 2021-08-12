@@ -10,6 +10,7 @@ class Register extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
 
+        // может, и не локаль
         this.state = {
             username: "",
             password: "",
@@ -32,9 +33,8 @@ class Register extends React.Component {
     handleRegister(e) {
         e.preventDefault();
 
-        this.props.dispatch(
-            register(this.state.username, this.state.password)
-        )
+
+        this.props.register(this.state.username, this.state.password)
         .then(() => {
             this.setState({
                 successful: true,
@@ -65,12 +65,5 @@ class Register extends React.Component {
         </form>
     }
 }
-
-function mapStateToProps(state) {
-    const { message } = state.message;
-    return {
-      message,
-    };
-  }
   
-  export default connect(mapStateToProps)(Register);
+  export default connect(null, {register} )(Register);

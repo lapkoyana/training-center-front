@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setLections, setCurrentLection, addLection, editLection } from '../../../redux/actions/lesson';
-import LectionsService from '../../../services/LectionsService';
+import { setLections, addOrUpdateLection, setCurrentLection } from '../../../redux/actions/lesson';
 
 class LectionEdit extends React.Component {
     constructor(props) {
@@ -17,16 +16,11 @@ class LectionEdit extends React.Component {
             signOfCompleteness: false
           };
     }
-    
-    // this.setState({
-    //     title: e.target.value
-    //   });
 
     componentDidMount() {
         if (this.props.match.params.id !== 'new'){
-            LectionsService.getLesson(this.props.match.params.id)
-                .then(response => response.json())
-                .then(data => this.setState(data)); // СДЕЛАЛА
+            this.props.setCurrentLection(this.props.match.params.id)
+                .then((data) => this.setState(data));
         }
     }
 
@@ -35,7 +29,7 @@ class LectionEdit extends React.Component {
         const name = target.name;
 
         let currentLection = this.state;
-        
+
         if (target.type === "checkbox"){
             const checked = target.checked;
             currentLection[name] = checked;
@@ -78,13 +72,10 @@ class LectionEdit extends React.Component {
             currentMethod = 'POST';
         }
 
-        LectionsService.createOrUpdateLesson(currentMethod, formData)
-        if (currentLection.id){
-            this.props.editLection(currentLection);
-        } else {
-            this.props.addLection(currentLection);
-        }
-        this.props.history.push('/lections');
+        this.props.addOrUpdateLection( currentMethod, formData, currentLection );
+
+        this.props.history.push("/lections");
+        window.location.reload();
     }
 
     render() {
@@ -114,10 +105,4 @@ class LectionEdit extends React.Component {
     }
 }
 
-// let mapStateToProps = (state) => {
-//     return {
-//         currentLection: state.lesson.currentLection
-//     }
-// }
-
-export default connect(null,{setLections, setCurrentLection, addLection, editLection}) (withRouter(LectionEdit));
+export default connect(null,{setLections, addOrUpdateLection, setCurrentLection }) (withRouter(LectionEdit));
