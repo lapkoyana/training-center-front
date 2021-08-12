@@ -1,5 +1,5 @@
 import QuestionsService from "../../services/QuestionsService";
-import { SET_QUESTIONS } from "../type"
+import { ADD_QUESTIONS, SET_QUESTIONS } from "../type"
 
 
 export const setQuestions = (lessonId) => (dispatch) => {
@@ -12,3 +12,11 @@ export const setQuestions = (lessonId) => (dispatch) => {
         })
     )
 };
+
+export const addQuestion = (lessonId, question) => (dispatch) => {
+    QuestionsService.addQuestion(lessonId, question)
+    dispatch({
+        type: ADD_QUESTIONS,
+        question
+    })
+}

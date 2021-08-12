@@ -7,6 +7,14 @@ class QuestionService {
         })
     };
 
+    addQuestion(lessonId, question) {
+        return fetch('http://localhost:8080/lections/' + lessonId + '/questions', {
+            method: 'POST',
+            headers: authHeader(),
+            body: {question} // здесь просто контент
+        })
+    }
+
     // // на бэке еще этот метод надо будет сделать
     // getQuestion(lessonId, questionId) {
     //     return fetch('http://localhost:8080/lections/' + lessonId + '/questions/' + questionId, {
