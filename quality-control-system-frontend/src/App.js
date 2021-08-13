@@ -10,6 +10,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { history } from './helpers/history';
 import QuestionsContainer from './components/Questions/QuestionsContainer';
+import LectionsPageForStudents from './components/Lections/LectionsPageForStudents';
 
 class App extends React.Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class App extends React.Component {
               <Route exact path='/lections' render={() => <LectionsContainer />} />
               <Route exact path='/lections/:id' component={LectionsEdit} />
               <Route path='/lections/:id/questions' render={() => <QuestionsContainer />} />
+              <Route exact path='/lessons' component={LectionsPageForStudents} />
             </Switch>
           </div>
         </div>
