@@ -1,7 +1,7 @@
 import {SET_QUESTIONS,
-    DELETE_QUESTIONS,
-    ADD_QUESTIONS,
-    EDIT_QUESTIONS} from './../type'
+    DELETE_QUESTION,
+    ADD_QUESTION,
+    EDIT_QUESTION} from './../type'
 
 
 let initialState = {
@@ -16,19 +16,19 @@ switch (action.type) {
             questions: action.questions
         };
     }
-    case DELETE_QUESTIONS: {
+    case DELETE_QUESTION: {
         return {
             ...state,
             questions: state.questions.filter(l => l.id !== action.questionId)
         }
     }
-    case ADD_QUESTIONS: {
+    case ADD_QUESTION: {
         return {
             ...state,
             questions: [...state.questions, action.question],
         }
     }
-    case EDIT_QUESTIONS: {
+    case EDIT_QUESTION: {
         return {
             ...state,
             questions: state.questions.map(l => {

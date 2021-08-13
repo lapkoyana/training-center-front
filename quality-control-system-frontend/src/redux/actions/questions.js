@@ -1,5 +1,5 @@
 import QuestionsService from "../../services/QuestionsService";
-import { ADD_QUESTIONS, SET_QUESTIONS } from "../type"
+import { ADD_QUESTION, SET_QUESTIONS, DELETE_QUESTION, EDIT_QUESTION } from "../type"
 
 
 export const setQuestions = (lessonId) => (dispatch) => {
@@ -16,7 +16,23 @@ export const setQuestions = (lessonId) => (dispatch) => {
 export const addQuestion = (lessonId, question) => (dispatch) => {
     QuestionsService.addQuestion(lessonId, question)
     dispatch({
-        type: ADD_QUESTIONS,
+        type: ADD_QUESTION,
         question
+    })
+}
+
+export const updateQuestion = (lessonId, question) => (dispatch) => {
+    QuestionsService.updateQuestion(lessonId, question);
+    dispatch({
+        type: EDIT_QUESTION,
+        question
+    })
+}
+
+export const deleteQuestion = (lessonId, questionId) => (dispatch) => {
+    QuestionsService.delete(lessonId, questionId);
+    dispatch({
+        type: DELETE_QUESTION,
+        questionId
     })
 }

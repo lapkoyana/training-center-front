@@ -1,19 +1,39 @@
 import React from 'react'
 
 class Questions extends React.Component {
+
     state = {
-        editMode: false
+        editMode: false,
+        question: {
+            content: ''
+        }
     }
 
-    activateEditMode() {
+    enableTextArea = (e, id, content) => {
         this.setState({
+            question: {
+                id, content
+            },
             editMode: true
         })
     }
 
-    deactivateEditMode() {
+    onQuestionChange = (e, id) => {
         this.setState({
-            editMode: false
+            question: {
+                id,
+                content: e.target.value
+            },
+        })
+    }
+
+    update = () => {
+        this.props.update(this.state.question);
+        this.setState({
+            question: {
+                content: ''
+            },
+            editMode: false,
         })
     }
 
@@ -21,21 +41,15 @@ class Questions extends React.Component {
         return <div>
             {this.props.questions.map(q => <div key={q.id}>
                 <div>
-                {!this.state.editMode && 
-                    <div>
-                        <span onDoubleClick={this.activateEditMode.bind(this)}>{q.content}</span>
-                    </div>
-                }
-                {this.state.editMode &&
-                    <div>
-                        <input autoFocus={true} onBlur={this.deactivateEditMode.bind(this)} value={this.props.q.content}/>
-                    </div>
-                }
+                    <span>{q.content}</span>
                 </div>
-                <div>
-                    Кнопочки всякие
-                </div>
+                <button onClick={(e) => {this.enableTextArea(e, q.id, q.content)}}>Редактировать вопрос</button>
+                <button onClick={() => {this.props.remove(q.id)}}>Удалить вопрос</button>
             </div>)}
+            <textarea disabled={this.state.editMode? '' : 'disabled'}  
+                        onBlur={this.update}
+                        onChange={(e) => {this.onQuestionChange(e, this.state.question.id)}}
+                        value={this.state.question.content}></textarea>
         </div>
     }
 }

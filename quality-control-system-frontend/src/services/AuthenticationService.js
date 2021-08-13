@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:8080/auth/"
+const URL = "http://localhost:8080/auth/"
 
 class AuthService {
     login(username, password) {
-        return fetch(API_URL + "signin", {
+        return fetch(URL + "signin", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ class AuthService {
     }
 
     register(username, password) {
-        return fetch(API_URL + "signup", {
+        return fetch(URL + "signup", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

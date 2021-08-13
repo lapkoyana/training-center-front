@@ -1,42 +1,36 @@
 import authHeader from "./auth-header";
 
+const URL = "http://localhost:8080/lections/"
+
 class QuestionService {
     getQuestions(lessonId) {
-        return fetch('http://localhost:8080/lections/' + lessonId + '/questions', {
+        return fetch(URL + lessonId + '/questions', {
             headers: authHeader()
         })
     };
 
     addQuestion(lessonId, question) {
-        return fetch('http://localhost:8080/lections/' + lessonId + '/questions', {
+        return fetch(URL + lessonId + '/questions', {
             method: 'POST',
-            headers: authHeader(),
-            body: {question} // здесь просто контент
+            headers: authHeader({'Content-Type': 'application/json'}),
+            body: JSON.stringify(question)
         })
     }
 
-    // // на бэке еще этот метод надо будет сделать
-    // getQuestion(lessonId, questionId) {
-    //     return fetch('http://localhost:8080/lections/' + lessonId + '/questions/' + questionId, {
-    //             headers: authHeader()
-    //         })
-    // }
+    updateQuestion(lessonId, question) {
+        return fetch(URL + lessonId + '/questions', {
+            method: 'PUT',
+            headers: authHeader({'Content-Type': 'application/json'}),
+            body: JSON.stringify(question)
+        })
+    }
 
-    // // разделить скорее всего
-    // createOrUpdateLesson(lessonId, currentMethod, formData) {
-    //     return fetch('http://localhost:8080/lections' + lessonId + '/questions', {
-    //         method: currentMethod,
-    //         headers: authHeader(),
-    //         body: formData, // точно не formData
-    //     });
-    // }
-
-    // delete(lessonId, questionId) {
-    //     return fetch('http://localhost:8080/lections/' + lessonId + '/questions/' + questionId, {
-    //         method: 'DELETE',
-    //         headers: authHeader()
-    //     })
-    // }
+    delete(lessonId, questionId) {
+        return fetch(URL + lessonId + '/questions/' + questionId, {
+            method: 'DELETE',
+            headers: authHeader()
+        })
+    }
 }
 
 export default new QuestionService();

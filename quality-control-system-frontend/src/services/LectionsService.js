@@ -1,20 +1,22 @@
 import authHeader from "./auth-header";
 
+const URL = "http://localhost:8080/lections"
+
 class LectionService {
     getLessons() {
-        return fetch('http://localhost:8080/lections', {
+        return fetch(URL, {
             headers: authHeader()
         })
     };
 
     getLesson(id) {
-        return fetch('http://localhost:8080/lections/' + id, {
+        return fetch(URL + '/' + id, {
                 headers: authHeader()
             })
     }
 
     createOrUpdateLesson(currentMethod, formData) {
-        return fetch('http://localhost:8080/lections', {
+        return fetch(URL, {
             method: currentMethod,
             headers: authHeader(),
             body: formData,
@@ -22,7 +24,7 @@ class LectionService {
     }
 
     delete(id) {
-        return fetch('http://localhost:8080/lections/' + id, {
+        return fetch(URL + '/' + id, {
             method: 'DELETE',
             headers: authHeader()
         })
