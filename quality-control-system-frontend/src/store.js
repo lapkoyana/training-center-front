@@ -10,4 +10,7 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(...middleware))
 );
 
+
+window.store = store;
+
 export default store;

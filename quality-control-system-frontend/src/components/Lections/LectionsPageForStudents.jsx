@@ -1,21 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setLections } from './../../redux/actions/lesson'
+import { setLections, setUserLesson } from './../../redux/actions/student'
 
 class LectionsPageForStudents extends React.Component {
     componentDidMount() {
         this.props.setLections();
+        this.props.setUserLesson();
     }
 
     render() {
         return <div>
-            {this.props.lections.map(l => <div key={l.id}>
+            {this.props.lessons.map(l => <div key={l.id}>
                 <div>{l.topic}</div>
-                <div>{l.signOfCompletenes
+                <div>{l.signOfCompleteness
                     ?'Можно скачать файл - потом'
                     :'Лекция еще не завершена преподавателем'}</div>
-                <Link>Перейти к форме опроса</Link>
+                <div>
+                    {l.completeness
+                        ?'Тест пройден'
+                        :<Link to={"/lessons/" + l.id + "/questions"}>Перейти к форме опроса</Link>
+                    }
+                </div>
             </div>)}
         </div>
     }
@@ -23,8 +29,8 @@ class LectionsPageForStudents extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        lections: state.lesson.lections
+        lessons: state.student.lessons
     }
 }
 
-export default connect(mapStateToProps, { setLections }) (LectionsPageForStudents);
+export default connect(mapStateToProps, { setLections, setUserLesson }) (LectionsPageForStudents);

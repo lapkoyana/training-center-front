@@ -1,6 +1,6 @@
 import authHeader from "./auth-header";
 
-const URL = "http://localhost:8080/lessons"
+const URL = "http://localhost:8080/lections"
 
 class LectionService {
     getLessons() {
@@ -8,6 +8,27 @@ class LectionService {
             headers: authHeader()
         })
     };
+
+    getLesson(id) {
+        return fetch(URL + '/' + id, {
+                headers: authHeader()
+            })
+    }
+
+    createOrUpdateLesson(currentMethod, formData) {
+        return fetch(URL, {
+            method: currentMethod,
+            headers: authHeader(),
+            body: formData,
+        });
+    }
+
+    delete(id) {
+        return fetch(URL + '/' + id, {
+            method: 'DELETE',
+            headers: authHeader()
+        })
+    }
 }
 
 export default new LectionService();
