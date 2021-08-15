@@ -12,6 +12,7 @@ import { history } from './helpers/history';
 import QuestionsContainer from './components/Questions/QuestionsContainer';
 import LectionsPageForStudents from './components/Lections/LectionsPageForStudents';
 import QuizPage from './components/Answers/QuizPage';
+import Answers from './components/Answers/Answers';
 
 class App extends React.Component {
   constructor(props) {
@@ -68,6 +69,14 @@ class App extends React.Component {
               )}
             </span>
 
+            <span className="nav-item">
+              {showLecturerBoard && (
+                  <Link to={"/lections/answers"}>
+                    Посмотреть ответы
+                  </Link>
+                )}
+            </span>
+
             {currentUser ? (
               <span className="nav-item">
                 {currentUser.username}
@@ -95,8 +104,9 @@ class App extends React.Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path='/lections' render={() => <LectionsContainer />} />
+              <Route exact path='/lections/answers' component={Answers} />
               <Route exact path='/lections/:id' component={LectionsEdit} />
-              <Route path='/lections/:id/questions' render={() => <QuestionsContainer />} />
+              <Route exact path='/lections/:id/questions' render={() => <QuestionsContainer />} />
               <Route exact path='/lessons' component={LectionsPageForStudents} />
               <Route exact path='/lessons/:id/questions' component={QuizPage} />
             </Switch>

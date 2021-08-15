@@ -29,6 +29,18 @@ class LectionService {
             headers: authHeader()
         })
     }
+
+    getAnswers() {
+        return fetch(URL + '/answers', {
+            headers: authHeader()
+        })
+    }
+
+    getStudents() {
+        return fetch(URL + '/students', {
+            headers: authHeader()
+        })
+    }
 }
 
 export default new LectionService();

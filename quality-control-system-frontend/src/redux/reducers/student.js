@@ -1,6 +1,7 @@
 import {SET_LESSONS,
         SET_USER_LESSON,
-        ADD_ANSWERS } from './../type'
+        ADD_ANSWERS,
+        SET_ANSWERS } from './../type'
 
 
 let initialState = {
@@ -33,6 +34,12 @@ switch (action.type) {
         }
     }
     case ADD_ANSWERS: {
+        return {
+            ...state,
+            answers: action.answers
+        }
+    }
+    case SET_ANSWERS: {
         return {
             ...state,
             answers: action.answers

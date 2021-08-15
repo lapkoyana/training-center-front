@@ -75,7 +75,7 @@ class LectionEdit extends React.Component {
         this.props.addOrUpdateLection( currentMethod, formData, currentLection );
 
         this.props.history.push("/lections");
-        window.location.reload();
+        // window.location.reload();
     }
 
     render() {
