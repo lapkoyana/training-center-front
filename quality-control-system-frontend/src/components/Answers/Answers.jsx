@@ -21,6 +21,13 @@ class Answers extends React.Component {
         this.props.setUsers();
         this.props.setLections();
         this.props.setAnswers();
+
+        this.setState({
+            currentLessonValue: this.props.lections[0].topic,
+            currentUserValue: this.props.users[0].username,
+            currentLessonId: this.props.lections[0].id,
+            currentUserId: this.props.users[0].id,
+        })
     }
 
     handleChange = (e) => {
@@ -38,7 +45,7 @@ class Answers extends React.Component {
         }
     }
 
-    handleClick = () => {// l => l.id !== action.lectionId
+    handleClick = () => {
         const answers = this.props.answers;
         let currentAnswers = answers.filter(a => {
             if(a.user === parseInt(this.state.currentUserId, 10) &&
