@@ -1,13 +1,15 @@
 import {SET_LESSONS,
         SET_USER_LESSON,
         ADD_ANSWERS,
-        SET_ANSWERS } from './../type'
+        SET_ANSWERS,
+        SET_FILE } from './../type'
 
 
 let initialState = {
     lessons: [],
     userLessons: [],
-    answers: []
+    answers: [],
+    file: null
 };
 
 const studentReducer = (state = initialState, action) => {
@@ -43,6 +45,12 @@ switch (action.type) {
         return {
             ...state,
             answers: action.answers
+        }
+    }
+    case SET_FILE: {
+        return {
+            ...state,
+            file: URL.createObjectURL(action.file)
         }
     }
     default:

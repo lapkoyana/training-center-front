@@ -1,5 +1,5 @@
 import StudentService from "../../services/StudentService";
-import { SET_LESSONS, SET_USER_LESSON, SET_QUESTIONS, ADD_ANSWERS } from "../type"
+import { SET_LESSONS, SET_USER_LESSON, SET_QUESTIONS, ADD_ANSWERS, SET_FILE } from "../type"
 
 export const setLections = () => (dispatch) => {
     return StudentService.getLessons()
@@ -40,4 +40,15 @@ export const addAnswers = (lessonId, answers) => (dispatch) => {
         type: ADD_ANSWERS,
         answers
     })
+}
+
+export const getLessonFile = (filename) => async (dispatch) => {
+    return await StudentService.getLessonFile(filename)
+        .then(response => response.blob())
+        .then(data => 
+            dispatch({
+                type: SET_FILE,
+                file: data 
+            })
+        )
 }

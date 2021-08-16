@@ -19,3 +19,5 @@ export const EDIT_QUESTION = 'EDIT-QUESTIONS'
 export const ADD_ANSWERS = 'ADD-ANSWERS';
 export const SET_ANSWERS = 'SET-ANSWERS';
 export const SET_USERS = 'SET-USERS';
+
+export const SET_FILE = 'SET-FILE'

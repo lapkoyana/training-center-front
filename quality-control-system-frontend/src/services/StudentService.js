@@ -28,6 +28,12 @@ class StudentService {
             body: JSON.stringify(answers)
         })
     }
+
+    getLessonFile(filename) {
+        return fetch(URL + '/files/' + filename, {
+            headers: authHeader()
+        });
+    }
 }
 
 export default new StudentService();
