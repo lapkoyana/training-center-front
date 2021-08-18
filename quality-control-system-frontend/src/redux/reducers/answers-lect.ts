@@ -1,13 +1,16 @@
-import { SET_ANSWERS, SET_USERS, SET_LECTIONS } from './../type'
-
+import { SetLectionsType, SetAnswersType, SetUsersType } from './../type';
+import { SET_ANSWERS, SET_USERS, SET_LECTIONS } from '../type'
+import { LectionsType, UsersType, AnswersType } from '../type'
 
 let initialState = {
-    answers: [],
-    users: [],
-    lections: []
+    answers: [] as Array<AnswersType>,
+    users: [] as Array<UsersType>,
+    lections: [] as Array<LectionsType>
 };
 
-const lecturerAnswerReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState
+
+const lecturerAnswerReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_LECTIONS: {
             return {
@@ -31,5 +34,7 @@ const lecturerAnswerReducer = (state = initialState, action) => {
             return state;
     }   
 }
+
+type ActionType = SetLectionsType | SetAnswersType | SetUsersType
 
 export default lecturerAnswerReducer;

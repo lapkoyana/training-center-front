@@ -1,21 +1,26 @@
+import { LoginType, RegisterSuccessType, RegisterFailType, LogoutType } from './../type';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     LOGIN_SUCCESS,
-    LOGIN_FAIL,
     LOGOUT,
 } from "../type";
 
-const user = JSON.parse(localStorage.getItem("user"));
+let storedUser = localStorage.getItem("user")
+let user = null
+
+if (typeof storedUser === 'string'){
+    user = JSON.parse(storedUser);
+}
 
 const initialState = user
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
 
-const authReducer = (state = initialState, action) => {
-    const { type, payload } = action;
+type InitialStateType = typeof initialState
 
-    switch (type) {
+const authReducer = (state = initialState, action: ActionType): InitialStateType => {
+    switch (action.type) {
         case REGISTER_SUCCESS:
             return {
                 ...state,
@@ -30,14 +35,8 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: payload.user
+                user: action.payload
             }
-        case LOGIN_FAIL:
-            return {
-                ...state,
-                isLoggedIn: false,
-                user: null
-            };
         case LOGOUT:
             return {
                 ...state,
@@ -48,5 +47,7 @@ const authReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+type ActionType = LoginType | RegisterSuccessType | RegisterFailType | LogoutType
 
 export default authReducer;

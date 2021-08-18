@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
+import { QuestionsType } from './../../redux/type'
 
-class Questions extends React.Component {
+type PropsType = {
+    questions: Array<QuestionsType>
+    update: (question: QuestionsType) => void
+    remove: (questionId: number | undefined) => void
+}
+
+type StateType = {
+    editMode: boolean,
+    question: QuestionsType
+}
+class Questions extends React.Component<PropsType, StateType> {
 
     state = {
         editMode: false,
         question: {
+            id: 0,
             content: ''
         }
     }
 
-    enableTextArea = (e, id, content) => {
+    enableTextArea = (id: number | undefined, content: string) => {
         this.setState({
             question: {
                 id, content
@@ -18,11 +30,11 @@ class Questions extends React.Component {
         })
     }
 
-    onQuestionChange = (e, id) => {
+    onQuestionChange = (e: ChangeEvent<HTMLTextAreaElement>, id: number) => {
         this.setState({
             question: {
                 id,
-                content: e.target.value
+                content: e.currentTarget.value
             },
         })
     }
@@ -43,10 +55,10 @@ class Questions extends React.Component {
                 <div>
                     <span>{q.content}</span>
                 </div>
-                <button onClick={(e) => {this.enableTextArea(e, q.id, q.content)}}>Редактировать вопрос</button>
+                <button onClick={() => {this.enableTextArea(q.id, q.content)}}>Редактировать вопрос</button>
                 <button onClick={() => {this.props.remove(q.id)}}>Удалить вопрос</button>
             </div>)}
-            <textarea disabled={this.state.editMode? '' : 'disabled'}  
+            <textarea disabled={!this.state.editMode}  
                         onBlur={this.update}
                         onChange={(e) => {this.onQuestionChange(e, this.state.question.id)}}
                         value={this.state.question.content}></textarea>

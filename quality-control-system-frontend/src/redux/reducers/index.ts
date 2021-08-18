@@ -7,10 +7,15 @@ import answersLect from "./answers-lect";
 
 
 
-export default combineReducers({
+let rootReducer = combineReducers({
     lesson,
     question,
     student,
     answersLect,
     auth
-});
+})
+
+type RootReducerType = typeof rootReducer
+export type StateType = ReturnType<RootReducerType>
+
+export default rootReducer

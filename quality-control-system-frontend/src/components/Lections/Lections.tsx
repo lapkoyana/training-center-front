@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './Lections.module.css';
+import {LectionsType} from '../../redux/type'
 
-const Lections = (props) => {
+type PropsType = {
+    lections: Array<LectionsType>
+    delete: (lectionId: number | undefined) => void
+}
+
+const Lections: React.FC<PropsType> = (props) => {
     
     return <div >
         { props.lections.map( l => <div className={style.lectionItem} key={l.id}>

@@ -1,7 +1,8 @@
 import LectionsService from "../../services/LectionsService"
-import { SET_ANSWERS, SET_USERS, SET_LECTIONS } from "../type"
+import { SET_USERS, SET_LECTIONS } from "../type"
+import { setAnswersAction } from '../type';
 
-export const setLections = () => async (dispatch) => {
+export const setLections = () => async (dispatch: any) => {
     return await LectionsService.getLessons()
     .then(response => response.json())
     .then(data => 
@@ -12,18 +13,15 @@ export const setLections = () => async (dispatch) => {
     )
 };
 
-export const setAnswers = () => async (dispatch) => {
+export const setAnswers = () => async (dispatch: any) => {
     return await LectionsService.getAnswers()
         .then(response => response.json())
         .then(data => 
-            dispatch({
-                type: SET_ANSWERS,
-                answers: data
-            })
+            dispatch(setAnswersAction(data))
         )
 }
 
-export const setUsers = () => async (dispatch) => {
+export const setUsers = () => async (dispatch: any) => {
     return await LectionsService.getStudents()
         .then(response => response.json())
         .then(data => 
