@@ -5,7 +5,8 @@ import {LectionsType} from '../../redux/type'
 
 type PropsType = {
     lections: Array<LectionsType>
-    delete: (lectionId: number | undefined) => void
+    delete: (lectionId: number) => void
+    setCurrentLection: (lectionId: number) => void
 }
 
 const Lections: React.FC<PropsType> = (props) => {
@@ -21,8 +22,8 @@ const Lections: React.FC<PropsType> = (props) => {
                 ? 'Лекция завершена'
                 : 'Лекция не завершена'}</div>
             <Link className={style.questionLink} to={'/lections/' + l.id + '/questions'}>Список вопросов</Link>
-            <Link to={"/lections/" + l.id}><button>Редактировать</button></Link>
-            <button onClick={() => props.delete(l.id)}>Удалить</button>
+            <Link onClick={() => props.setCurrentLection(l.id!)} to={"/lections/" + l.id}><button>Редактировать</button></Link>
+            <button onClick={() => props.delete(l.id!)}>Удалить</button>
         </div>)}
         <Link to='/lections/new'><button className={style.addingButton}>Добавить лекцию</button></Link>
     </div>

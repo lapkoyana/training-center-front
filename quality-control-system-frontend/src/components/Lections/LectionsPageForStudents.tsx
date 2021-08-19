@@ -22,7 +22,7 @@ class LectionsPageForStudents extends React.Component<StatePropsType & DispatchP
         this.props.setUserLesson();
     }
 
-    handleClick = (filename: string | undefined) => {
+    handleClick = (filename: string ) => {
         this.props.getLessonFile(filename);
     }
 
@@ -31,7 +31,7 @@ class LectionsPageForStudents extends React.Component<StatePropsType & DispatchP
             {this.props.lections.map(l => <div key={l.id}>
                 <div>{l.topic}</div>
                 <div>{l.signOfCompleteness && l.lectureFile
-                    ?<a href={this.props.file} download={l.lectureFile}><button onClick={() => this.handleClick(l.lectureFile)}>Скачать лекцию</button></a>
+                    ?<a href={this.props.file} download={l.lectureFile}><button onClick={() => this.handleClick(l.lectureFile!)}>Скачать лекцию</button></a>
                     :'Лекция еще не завершена преподавателем либо файл не загружен'}</div>
                 <div>
                     {l.completeness

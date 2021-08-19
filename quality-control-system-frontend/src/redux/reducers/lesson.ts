@@ -41,7 +41,14 @@ const lectionReducer = (state = initialState, action: ActionType): InitialStateT
                         return action.lection;
                     }
                     return l;
-                })
+                }),
+                currentLection: {
+                    id: 0,
+                    topic: '',
+                    dateOfClass: '',
+                    lectureFile: '',
+                    signOfCompleteness: false
+                }
             }
         }
         case SET_CURRENT_LECTION: {
@@ -55,6 +62,6 @@ const lectionReducer = (state = initialState, action: ActionType): InitialStateT
     }
 }
 
-type ActionType = SetLectionsType | DeleteLectionType | AddLectionType | EditLectionType | SetCurrentLectionType
+export type ActionType = SetLectionsType | DeleteLectionType | AddLectionType | EditLectionType | SetCurrentLectionType
 
 export default lectionReducer;

@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { ActionType } from '../reducers/lesson'
 import LectionsService from "../../services/LectionsService";
 import { LectionsType,
         setLectionsAction,
@@ -7,7 +9,7 @@ import { LectionsType,
         setCurrentLectionAction } from './../type';
 
 
-export const setLections = () => async (dispatch: any) => {
+export const setLections = () => async (dispatch: Dispatch<ActionType>) => {
     return await LectionsService.getLessons()
     .then(response => response.json())
     .then(data => 
@@ -22,14 +24,14 @@ export const setCurrentLection = (id: number) => async (dispatch: any) => {
     )
 };
 
-export const deleteLection = (lectionId: number | undefined) => async (dispatch: any) => {
+export const deleteLection = (lectionId: number) => async (dispatch: Dispatch<ActionType>) => {
     return await LectionsService.delete(lectionId)
     .then(() => 
         dispatch(deleteLectionAction(lectionId))
     )
 };
 
-export const addOrUpdateLection = (currentMethod: string, formData: any, lection: LectionsType) => (dispatch: any) => {
+export const addOrUpdateLection = (currentMethod: string, formData: any, lection: LectionsType) => (dispatch: Dispatch<ActionType>) => {
     LectionsService.createOrUpdateLesson(currentMethod, formData);
     if (lection.id){
         dispatch(editLectionAction(lection))

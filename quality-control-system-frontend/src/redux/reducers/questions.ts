@@ -13,7 +13,7 @@ let initialState = {
 
 type InitialStateType = typeof initialState
 
-const questionReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+const questionReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_QUESTIONS: {
             return {
@@ -49,5 +49,6 @@ const questionReducer = (state = initialState, action: ActionsTypes): InitialSta
     }
 }
 
-type ActionsTypes = SetQuestionsType | AddQuestionsType | EditQuestionsType | DeleteQuestionsType
+export type ActionType = SetQuestionsType | AddQuestionsType | EditQuestionsType | DeleteQuestionsType
+
 export default questionReducer;

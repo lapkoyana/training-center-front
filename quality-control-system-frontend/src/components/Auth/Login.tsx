@@ -47,8 +47,6 @@ class Login extends React.Component<PropsType, MyStateType> {
         e.preventDefault();
 
         this.props.login(this.state.username, this.state.password)
-        // this.props.history.push("/"); // мне это нужно?
-        // window.location.reload();
     }
 
     render() {

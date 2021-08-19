@@ -1,8 +1,10 @@
+import {Dispatch} from 'redux';
+import { ActionType } from '../reducers/student'
 import StudentService from "../../services/StudentService";
 import { StudentAnswersType } from './../type';
-import { addAnswersAction, setUserLessonAction, setLectionsAction, setFileAction, setQuestionsAction } from './../type';
+import { addAnswersAction, setUserLessonAction, setLectionsAction, setFileAction } from './../type';
 
-export const setLections = () => async (dispatch: any) => {
+export const setLections = () => async (dispatch: Dispatch<ActionType>) => {
     return await StudentService.getLessons()
     .then(response => response.json())
     .then(data => 
@@ -10,7 +12,7 @@ export const setLections = () => async (dispatch: any) => {
     )
 };
 
-export const setUserLesson = () => async (dispatch: any) => {
+export const setUserLesson = () => async (dispatch: Dispatch<ActionType>) => {
     return await StudentService.getUserLesson()
         .then(response => response.json())
         .then(data => 
@@ -18,20 +20,12 @@ export const setUserLesson = () => async (dispatch: any) => {
         )
 }
 
-export const setQuestions = (lessonId: number) => async (dispatch: any) => {
-    return await StudentService.getQuestions(lessonId)
-        .then(response => response.json())
-        .then(data => 
-            dispatch(setQuestionsAction(data))
-        )
-}
-
-export const addAnswers = (lessonId: number, answers: Array<StudentAnswersType>) => (dispatch: any) => {
+export const addAnswers = (lessonId: number, answers: Array<StudentAnswersType>) => (dispatch: Dispatch<ActionType>) => {
     StudentService.addAnswers(lessonId, answers);
     dispatch(addAnswersAction(answers))
 }
 
-export const getLessonFile = (filename: string | undefined) => async (dispatch: any) => {
+export const getLessonFile = (filename: string | undefined) => async (dispatch: Dispatch<ActionType>) => {
     return await StudentService.getLessonFile(filename)
         .then(response => response.blob())
         .then(blob => 

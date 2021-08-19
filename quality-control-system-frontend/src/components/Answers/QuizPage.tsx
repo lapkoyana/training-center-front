@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router';
-import { setQuestions, addAnswers } from '../../redux/actions/student'
+import { addAnswers } from '../../redux/actions/student'
+import { setQuestions } from '../../redux/actions/questions'
 import { QuestionsType, StudentAnswersType } from './../../redux/type'
 import { StateType } from './../../redux/reducers/index'
 import { RouteComponentProps } from 'react-router-dom';

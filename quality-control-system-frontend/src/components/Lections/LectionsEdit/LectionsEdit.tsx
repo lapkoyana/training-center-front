@@ -10,20 +10,16 @@ type StatePropsType = {
 }
 
 type DispatchPropsType = {
-    addOrUpdateLection: (currentMethod: string, formData: any, currentLection: any) => void,
-    setCurrentLection: (lectionId: number)  => void
+    addOrUpdateLection: (currentMethod: string, formData: any, currentLection: LectionsType) => void,
 }
 
-type PathParamType = {lectionId: string}
+type PathParamType = {id: string}
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
 type MyStateType = {
-    id?: number | undefined
-    topic: string,
-    dateOfClass: string,
-    lectureFile: string | Blob,
-    signOfCompleteness: boolean
+    currentLection: LectionsType
+    lectureFile: Blob | undefined
 }
 
 class LectionEdit extends React.Component<PropsType, MyStateType> {
@@ -31,26 +27,35 @@ class LectionEdit extends React.Component<PropsType, MyStateType> {
         super(props);
 
         this.state = {
-            id: 0,
-            topic: '',
-            dateOfClass: '',
-            lectureFile: '',
-            signOfCompleteness: false
+            currentLection: {
+                id: 0,
+                topic: '',
+                dateOfClass: '',
+                lectureFile: '',
+                signOfCompleteness: false
+            },
+            lectureFile: undefined
           };
     }
 
     componentDidMount() {
-        if (this.props.match.params.lectionId !== 'new'){
-            this.props.setCurrentLection(Number.parseInt(this.props.match.params.lectionId))
+        if (this.props.match.params.id !== 'new'){
+            this.setState({
+                currentLection: this.props.currentLection
+            })
         }
     }
 
     handleTopic = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({topic: e.target.value});
+        const currentLection = this.state.currentLection
+        currentLection.topic = e.target.value
+        this.setState({currentLection});
     }
 
     handleDate = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({dateOfClass: e.target.value});
+        const currentLection = this.state.currentLection
+        currentLection.dateOfClass = e.target.value
+        this.setState({currentLection});
     }
     
     handleFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,12 +64,14 @@ class LectionEdit extends React.Component<PropsType, MyStateType> {
     }
 
     handleSign = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({signOfCompleteness: e.target.checked});
+        const currentLection = this.state.currentLection
+        currentLection.signOfCompleteness = e.target.checked
+        this.setState({currentLection});
     }
 
     handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const currentLection = this.state;
+        const currentLection = this.state.currentLection;
 
         let formData = new FormData();
         if (currentLection.id){
@@ -80,8 +87,8 @@ class LectionEdit extends React.Component<PropsType, MyStateType> {
                 signOfCompleteness: currentLection.signOfCompleteness}));
         }
 
-        formData.append("file", currentLection.lectureFile);
-        
+        formData.append("file", this.state.lectureFile!);
+
         let currentMethod = '';
         if (currentLection.id){
             currentMethod = 'PUT';
@@ -96,7 +103,7 @@ class LectionEdit extends React.Component<PropsType, MyStateType> {
     }
 
     render() {
-        const currentLection = this.state;
+        const currentLection = this.state.currentLection;
 
         return(
             <form id="formData" onSubmit={this.handleSubmit}>
@@ -129,4 +136,4 @@ const mapStateToProps = (state: StateType): StatePropsType => {
 }
 
 export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { addOrUpdateLection, setCurrentLection }) (withRouter(LectionEdit));
+    (mapStateToProps, { addOrUpdateLection }) (withRouter(LectionEdit));

@@ -7,8 +7,6 @@ import {SET_LECTIONS,
 
 import {StudentAnswersType, LectionsType, UserLessonsType} from '../type'
 
-
-
 type InitialStateType = {
     lections: Array<LectionsType>,
     userLessons: Array<UserLessonsType>,
@@ -23,7 +21,7 @@ let initialState: InitialStateType = {
     file: undefined
 }
 
-const studentReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+const studentReducer = (state = initialState, action: ActionType): InitialStateType => {
 switch (action.type) {
     case SET_LECTIONS: {
         return {
@@ -69,7 +67,7 @@ switch (action.type) {
     }   
 }
 
-type ActionsTypes = SetLectionsType | SetUserLessonType | AddAnswersType | 
+export type ActionType = SetLectionsType | SetUserLessonType | AddAnswersType | 
                     SetStudentAnswersType | SetFileType
 
 export default studentReducer;

@@ -35,6 +35,6 @@ const lecturerAnswerReducer = (state = initialState, action: ActionType): Initia
     }   
 }
 
-type ActionType = SetLectionsType | SetAnswersType | SetUsersType
+export type ActionType = SetLectionsType | SetAnswersType | SetUsersType
 
 export default lecturerAnswerReducer;

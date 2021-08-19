@@ -48,6 +48,6 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
     }
 }
 
-type ActionType = LoginType | RegisterSuccessType | RegisterFailType | LogoutType
+export type ActionType = LoginType | RegisterSuccessType | RegisterFailType | LogoutType
 
 export default authReducer;
