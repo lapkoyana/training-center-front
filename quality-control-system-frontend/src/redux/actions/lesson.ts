@@ -1,5 +1,10 @@
 import LectionsService from "../../services/LectionsService";
-import { LectionsType, setLectionsAction, deleteLectionAction, editLectionAction, addLectionAction } from './../type';
+import { LectionsType,
+        setLectionsAction,
+        deleteLectionAction,
+        editLectionAction,
+        addLectionAction,
+        setCurrentLectionAction } from './../type';
 
 
 export const setLections = () => async (dispatch: any) => {
@@ -10,12 +15,11 @@ export const setLections = () => async (dispatch: any) => {
     )
 };
 
-export const setCurrentLection = (id: number) => async () => {
+export const setCurrentLection = (id: number) => async (dispatch: any) => {
     return await LectionsService.getLesson(id)
         .then(response => response.json())
-        .then(data => {
-            return data;
-        });
+        .then(data => dispatch(setCurrentLectionAction(data))
+    )
 };
 
 export const deleteLection = (lectionId: number | undefined) => async (dispatch: any) => {

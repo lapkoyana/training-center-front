@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { setAnswers, setUsers, setLections } from './../../redux/actions/answers-lect'
+import { setAnswers, setUsers, setLections } from '../../redux/actions/answers-lect'
+import { StateType } from './../../redux/reducers/index'
+import { LectionsType, UsersType, AnswersType } from './../../redux/type'
 
-class Answers extends React.Component {
+type StatePropsType = {
+    lections: Array<LectionsType>,
+    users: Array<UsersType>,
+    answers: Array<AnswersType>
+}
 
-    constructor(props) {
+type DispatchPropsType = {
+    setAnswers: () => void,
+    setUsers: () => void,
+    setLections: () => void
+}
+
+type PropsType = StatePropsType & DispatchPropsType
+
+type MyStateType = {
+    currentLessonValue: string,
+    currentUserValue: string,
+    currentLessonId: number,
+    currentUserId: number,
+    answers: Array<AnswersType>
+}
+
+class Answers extends React.Component<PropsType, MyStateType> {
+
+    constructor(props: PropsType) {
         super(props);
 
         this.state = {
@@ -25,22 +48,22 @@ class Answers extends React.Component {
         this.setState({
             currentLessonValue: this.props.lections[0].topic,
             currentUserValue: this.props.users[0].username,
-            currentLessonId: this.props.lections[0].id,
+            currentLessonId: this.props.lections[0].id!,
             currentUserId: this.props.users[0].id,
         })
     }
 
-    handleChange = (e) => {
+    handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         let name = e.target.name;
         if (name === 'lessons') {
             this.setState({
                 currentLessonValue: e.target.value,
-                currentLessonId: e.target.options[e.target.selectedIndex].id
+                currentLessonId: Number.parseInt(e.target.options[e.target.selectedIndex].id)
             })
         } else if (name === 'users') {
             this.setState({
                 currentUserValue: e.target.value,
-                currentUserId: e.target.options[e.target.selectedIndex].id
+                currentUserId: Number.parseInt(e.target.options[e.target.selectedIndex].id)
             })
         }
     }
@@ -48,8 +71,8 @@ class Answers extends React.Component {
     handleClick = () => {
         const answers = this.props.answers;
         let currentAnswers = answers.filter(a => {
-            if(a.user === parseInt(this.state.currentUserId, 10) &&
-               a.lesson === parseInt(this.state.currentLessonId, 10))
+            if(a.userId === this.state.currentUserId &&
+               a.lessonId === this.state.currentLessonId)
                 return true;
             else {return false;}
             })
@@ -62,12 +85,12 @@ class Answers extends React.Component {
     render() {
         return <div>
             <select onChange={this.handleChange} name="lessons">
-                {this.props.lections.map((l) => <option key={l.id} id={l.id}>
+                {this.props.lections.map((l) => <option key={l.id} id={l.id?.toString()}>
                     {l.topic}
                 </option>)}
             </select>
             <select onChange={this.handleChange} name="users">
-                {this.props.users.map((u) => <option key={u.id} id={u.id}>
+                {this.props.users.map((u) => <option key={u.id} id={u.id.toString()}>
                     {u.username}
                 </option>)}
             </select>
@@ -79,7 +102,7 @@ class Answers extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: StateType): StatePropsType => {
     return {
         lections: state.answersLect.lections,
         users: state.answersLect.users,
@@ -87,4 +110,5 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { setAnswers, setUsers, setLections })(withRouter(Answers));
+export default connect<StatePropsType, DispatchPropsType, {}, StateType>
+    (mapStateToProps, { setAnswers, setUsers, setLections })(Answers);

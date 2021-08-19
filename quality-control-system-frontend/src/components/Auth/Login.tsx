@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { connect } from "react-redux";
 import { login } from "../../redux/actions/auth"
 
-class Login extends React.Component {
-    constructor(props) {
+import { StateType } from './../../redux/reducers/index'
+
+type StatePropsType = {
+    isLoggedIn: boolean
+}
+
+type DispatchPropsType = {
+    login: (username: string, password: string) => void
+}
+
+type PropsType = StatePropsType & DispatchPropsType
+
+type MyStateType = {
+    username: string,
+    password: string
+}
+
+class Login extends React.Component<PropsType, MyStateType> {
+    constructor(props: PropsType) {
         super(props);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
             username: "",
@@ -17,26 +31,24 @@ class Login extends React.Component {
         };
     }
 
-    onChangeUsername(e) {
+    onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             username: e.target.value,
         });
     }
 
-    onChangePassword(e) {
+    onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             password: e.target.value,
           });
     }
 
-    handleLogin(e) {
+    handleLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         this.props.login(this.state.username, this.state.password)
-        .then(() => {
-            this.props.history.push("/");
-            window.location.reload();
-        })
+        // this.props.history.push("/"); // мне это нужно?
+        // window.location.reload();
     }
 
     render() {
@@ -62,11 +74,12 @@ class Login extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: StateType): StatePropsType {
     const { isLoggedIn } = state.auth;
     return {
       isLoggedIn,
     };
   }
   
-  export default connect(mapStateToProps, { login })(Login);
+  export default connect<StatePropsType, DispatchPropsType, {}, StateType>
+    (mapStateToProps, { login })(Login);

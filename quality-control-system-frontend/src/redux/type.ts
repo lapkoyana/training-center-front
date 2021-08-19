@@ -9,6 +9,7 @@ export const DELETE_LECTION = 'DELETE-LECTIONS';
 export const ADD_LECTION = 'ADD-LECTION'
 export const EDIT_LECTION = 'EDIT-LECTION';
 export const SET_USER_LESSON = 'SET-USER-LESSON';
+export const SET_CURRENT_LECTION = 'SET-CURRENT-LECTION';
 
 export const SET_QUESTIONS = 'SET-QUESTIONS';
 export const DELETE_QUESTION = 'DELETE-QUESTION';
@@ -76,6 +77,15 @@ export type SetLectionsType = {
 export const setLectionsAction = (lections: Array<LectionsType>): SetLectionsType => ({
     type: SET_LECTIONS,
     lections
+})
+
+export type SetCurrentLectionType = {
+    type: typeof SET_CURRENT_LECTION,
+    lection: LectionsType
+}
+export const setCurrentLectionAction = (lection: LectionsType): SetCurrentLectionType => ({
+    type: SET_CURRENT_LECTION,
+    lection
 })
 
 export type SetUserLessonType = {

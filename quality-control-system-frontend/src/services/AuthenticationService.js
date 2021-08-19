@@ -1,8 +1,8 @@
 const URL = "http://localhost:8080/auth/"
 
 class AuthService {
-    login(username, password) {
-        return fetch(URL + "signin", {
+    async login(username, password) {
+        return await fetch(URL + "signin", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

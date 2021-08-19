@@ -1,55 +1,48 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../../redux/actions/auth';
 
-class Register extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.handleRegister = this.handleRegister.bind(this);
 
-        // может, и не локаль
+type DispatchPropsType = {
+    register: (username: string, password: string) => void
+}
+
+type MyStateType = {
+    username: string,
+    password: string,
+}
+
+class Register extends React.Component<DispatchPropsType, MyStateType> {
+    constructor(props: DispatchPropsType) {
+        super(props);
+
         this.state = {
             username: "",
             password: "",
-            successful: false
         }
     }
 
-    onChangeUsername(e) {
+    onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             username: e.target.value,
         });
     }
 
-    onChangePassword(e) {
+    onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             password: e.target.value,
         })
     }
 
-    handleRegister(e) {
+    handleRegister = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
 
         this.props.register(this.state.username, this.state.password)
-        .then(() => {
-            this.setState({
-                successful: true,
-            });
-        })
-        .catch(() => {
-            this.setState({
-                successful: false,
-            });
-        });
     }
 
     render() {
         return <form onSubmit={this.handleRegister}>
-            {!this.state.successful && (
                 <div>
                     <div><label>
                     Логин:
@@ -59,11 +52,11 @@ class Register extends React.Component {
                     Пароль:
                     <input type="text" name="password" onChange={this.onChangePassword} value={this.state.password}/>
                 </label></div>
-                </div>
-            )}
+            </div>
             <input type="submit" value="ОК" />
         </form>
     }
 }
   
-  export default connect(null, {register} )(Register);
+  export default connect<{}, DispatchPropsType, {}, null>
+    (null, {register} )(Register);

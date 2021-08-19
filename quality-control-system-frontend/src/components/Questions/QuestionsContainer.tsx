@@ -21,8 +21,11 @@ type PathParamType = {lectionId: string}
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
-// ошибки
-class QuestionsContainer extends React.Component<PropsType> {
+type MyStateStateType = {
+    content: string
+}
+
+class QuestionsContainer extends React.Component<PropsType, MyStateStateType> {
 
     constructor(props: PropsType) {
         super(props);
@@ -41,11 +44,8 @@ class QuestionsContainer extends React.Component<PropsType> {
     }
     
     handleSubmit(e: ChangeEvent<HTMLInputElement>) {
-        let currentQuestion = this.state;
         let value = e.target.value;
-        let name = e.target.name;
-        currentQuestion[name] = value;
-        this.setState({currentQuestion});
+        this.setState({content: value});
     }
 
     addQuestion() {
@@ -87,5 +87,5 @@ let mapStateToProps = (state: StateType): StatePropsType => {
 }
 
 export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps,{ setQuestions, addQuestion, deleteQuestion, updateQuestion})
+    (mapStateToProps, { setQuestions, addQuestion, deleteQuestion, updateQuestion })
     (withRouter(QuestionsContainer));

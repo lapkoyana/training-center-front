@@ -1,12 +1,14 @@
-import { DeleteLectionType, LectionsType, SetLectionsType, AddLectionType, EditLectionType } from './../type';
+import { DeleteLectionType, LectionsType, SetLectionsType, AddLectionType, EditLectionType, SetCurrentLectionType } from './../type';
 import {SET_LECTIONS,
         DELETE_LECTION,
         ADD_LECTION,
-        EDIT_LECTION} from '../type'
+        EDIT_LECTION,
+        SET_CURRENT_LECTION } from '../type'
 
 
 let initialState = {
-    lections: [] as Array<LectionsType>
+    lections: [] as Array<LectionsType>,
+    currentLection: {} as LectionsType
 };
 
 type InitialStateType = typeof initialState
@@ -42,11 +44,17 @@ const lectionReducer = (state = initialState, action: ActionType): InitialStateT
                 })
             }
         }
+        case SET_CURRENT_LECTION: {
+            return {
+                ...state,
+                currentLection: action.lection
+            }
+        }
         default:
             return state;
     }
 }
 
-type ActionType = SetLectionsType | DeleteLectionType | AddLectionType | EditLectionType
+type ActionType = SetLectionsType | DeleteLectionType | AddLectionType | EditLectionType | SetCurrentLectionType
 
 export default lectionReducer;
