@@ -1,17 +1,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { addOrUpdateLection, setCurrentLection } from '../../../redux/actions/lesson';
-import { StateType } from './../../../redux/reducers/index'
-import { LectionsType } from './../../../redux/type'
-
-type StatePropsType = {
-    currentLection: LectionsType
-}
-
-type DispatchPropsType = {
-    addOrUpdateLection: (currentMethod: string, formData: any, currentLection: LectionsType) => void,
-}
+import { RouteComponentProps } from 'react-router-dom';
+import { LectionsType } from '../../redux/type'
+import { StatePropsType, DispatchPropsType } from './LectionEditPropsTypes'
 
 type PathParamType = {id: string}
 
@@ -22,7 +12,7 @@ type MyStateType = {
     lectureFile: Blob | undefined
 }
 
-class LectionEdit extends React.Component<PropsType, MyStateType> {
+export class LectionEdit extends React.Component<PropsType, MyStateType> {
     constructor(props: PropsType) {
         super(props);
 
@@ -128,12 +118,3 @@ class LectionEdit extends React.Component<PropsType, MyStateType> {
         )
     }
 }
-
-const mapStateToProps = (state: StateType): StatePropsType => {
-    return {
-        currentLection: state.lesson.currentLection
-    }
-}
-
-export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { addOrUpdateLection }) (withRouter(LectionEdit));

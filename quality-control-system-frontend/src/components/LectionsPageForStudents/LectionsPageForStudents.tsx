@@ -1,22 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setLections, setUserLesson, getLessonFile } from '../../redux/actions/student'
-import { LectionsType } from './../../redux/type'
-import { StateType } from './../../redux/reducers/index'
+import { StatePropsType, DispatchPropsType } from './LectionsPageForStudentsPropsTypes'
 
-type StatePropsType = {
-    lections: Array<LectionsType>,
-    file: string | undefined
-}
-
-type DispatchPropsType = {
-    setLections: () => void,
-    setUserLesson: () => void,
-    getLessonFile: (filename: string | undefined) => void
-}
-
-class LectionsPageForStudents extends React.Component<StatePropsType & DispatchPropsType> {
+export class LectionsPageForStudents extends React.Component<StatePropsType & DispatchPropsType> {
     componentDidMount() {
         this.props.setLections();
         this.props.setUserLesson();
@@ -43,13 +29,3 @@ class LectionsPageForStudents extends React.Component<StatePropsType & DispatchP
         </div>
     }
 }
-
-const mapStateToProps = (state: StateType): StatePropsType => {
-    return {
-        lections: state.student.lections,
-        file: state.student.file
-    }
-}
-
-export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { setLections, setUserLesson, getLessonFile }) (LectionsPageForStudents);

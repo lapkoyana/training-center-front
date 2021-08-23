@@ -1,36 +1,19 @@
 import React, { ChangeEvent } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router';
-import { addAnswers } from '../../redux/actions/student'
-import { setQuestions } from '../../redux/actions/questions'
-import { QuestionsType, StudentAnswersType } from './../../redux/type'
-import { StateType } from './../../redux/reducers/index'
 import { RouteComponentProps } from 'react-router-dom';
-
-type StatePropsType = {
-    questions: Array<QuestionsType>
-}
-
-type DispatchPropsType = {
-    setQuestions: (lectionId: number) => void,
-    addAnswers: (lectionId: number, answers: Array<StudentAnswersType>) => void
-}
+import { StatePropsType, DispatchPropsType } from './QuizPagePropsTypes'
+import { StudentAnswersType } from '../../redux/type'
 
 type PathParamType = {lectionId: string}
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
-type MyStateType = {
+type StateType = {
     answers: Array<StudentAnswersType>
 }
 
-class QuizPage extends React.Component<PropsType, MyStateType> {
-    constructor(props: PropsType) {
-        super(props);
-        
-        this.state = {
-            answers: []
-        }
+export class QuizPage extends React.Component<PropsType, StateType> {
+    state:StateType = {
+        answers: []
     }
 
     componentDidMount() {
@@ -68,12 +51,3 @@ class QuizPage extends React.Component<PropsType, MyStateType> {
         </div>
     }
 }
-
-let mapStateToProps = (state: StateType): StatePropsType => {
-    return {
-        questions: state.question.questions
-    }
-}
-
-export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { setQuestions, addAnswers })(withRouter(QuizPage))

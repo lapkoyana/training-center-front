@@ -31,6 +31,14 @@ export type LectionsType = {
     completeness?: boolean
 }
 
+export type CurrentUser = {
+    token: string,
+    type: string,
+    id: number,
+    username: string,
+    roles: Array<string>
+}
+
 export type UsersType = {
     id: number
     username: string

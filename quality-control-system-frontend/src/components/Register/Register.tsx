@@ -1,25 +1,15 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { connect } from 'react-redux';
-import { register } from '../../redux/actions/auth';
+import { DispatchPropsType } from './RegisterPropsTypes'
 
-
-type DispatchPropsType = {
-    register: (username: string, password: string) => void
-}
-
-type MyStateType = {
+type StateType = {
     username: string,
     password: string,
 }
 
-class Register extends React.Component<DispatchPropsType, MyStateType> {
-    constructor(props: DispatchPropsType) {
-        super(props);
-
-        this.state = {
-            username: "",
-            password: "",
-        }
+export class Register extends React.Component<DispatchPropsType, StateType> {
+    state: StateType = {
+        username: "",
+        password: "",
     }
 
     onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +47,3 @@ class Register extends React.Component<DispatchPropsType, MyStateType> {
         </form>
     }
 }
-  
-  export default connect<{}, DispatchPropsType, {}, null>
-    (null, {register} )(Register);

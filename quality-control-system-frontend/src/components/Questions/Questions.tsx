@@ -1,69 +1,66 @@
 import React, { ChangeEvent } from 'react'
-import { QuestionsType } from './../../redux/type'
+import { RouteComponentProps } from 'react-router-dom';
+import QuestionEdit from './QuestionsEdit/QuestionEdit';
+import { QuestionsType } from '../../redux/type'
+import { StatePropsType, DispatchPropsType, PathParamType } from './QuestionsPropsTypes'
 
-type PropsType = {
-    questions: Array<QuestionsType>
-    update: (question: QuestionsType) => void
-    remove: (questionId: number | undefined) => void
-}
+type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
 type StateType = {
-    editMode: boolean,
-    question: QuestionsType
+    content: string
 }
-class Questions extends React.Component<PropsType, StateType> {
 
-    state = {
-        editMode: false,
-        question: {
-            id: 0,
+export class Questions extends React.Component<PropsType, StateType> {
+
+    constructor(props: PropsType) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.addQuestion = this.addQuestion.bind(this);
+        this.remove = this.remove.bind(this);
+        this.update = this.update.bind(this);
+
+        this.state = {
             content: ''
         }
     }
 
-    enableTextArea = (id: number | undefined, content: string) => {
-        this.setState({
-            question: {
-                id, content
-            },
-            editMode: true
-        })
+    componentDidMount() {
+        this.props.setQuestions(Number.parseInt(this.props.match.params.lectionId));
+    }
+    
+    handleSubmit(e: ChangeEvent<HTMLInputElement>) {
+        let value = e.target.value;
+        this.setState({content: value});
     }
 
-    onQuestionChange = (e: ChangeEvent<HTMLTextAreaElement>, id: number) => {
+    addQuestion() {
+        let currentQuestion = this.state;
+        this.props.addQuestion(
+            Number.parseInt(this.props.match.params.lectionId), currentQuestion);
         this.setState({
-            question: {
-                id,
-                content: e.currentTarget.value
-            },
-        })
+            content: ''
+        });
     }
 
-    update = () => {
-        this.props.update(this.state.question);
-        this.setState({
-            question: {
-                content: ''
-            },
-            editMode: false,
-        })
+    remove(questionId: number | undefined) {
+        this.props.deleteQuestion(
+            Number.parseInt(this.props.match.params.lectionId), questionId!);
+    }
+
+    update(question: QuestionsType) {
+        this.props.updateQuestion(
+            Number.parseInt(this.props.match.params.lectionId), question);
     }
 
     render() {
+        const currentQuestion = this.state;
+
         return <div>
-            {this.props.questions.map(q => <div key={q.id}>
-                <div>
-                    <span>{q.content}</span>
-                </div>
-                <button onClick={() => {this.enableTextArea(q.id, q.content)}}>Редактировать вопрос</button>
-                <button onClick={() => {this.props.remove(q.id)}}>Удалить вопрос</button>
-            </div>)}
-            <textarea disabled={!this.state.editMode}  
-                        onBlur={this.update}
-                        onChange={(e) => {this.onQuestionChange(e, this.state.question.id)}}
-                        value={this.state.question.content}></textarea>
-        </div>
+                <QuestionEdit questions={this.props.questions}
+                    remove={this.remove}
+                    update={this.update}/>
+                <input type="text" name="content" onChange={this.handleSubmit} value={currentQuestion.content}/>
+                <button onClick={this.addQuestion} >Добавить вопрос</button>
+            </div>
     }
 }
-
-export default Questions;

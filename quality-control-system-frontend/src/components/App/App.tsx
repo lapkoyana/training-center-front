@@ -1,33 +1,36 @@
-import './App.css';
-import { Link, Route, Router, Switch } from 'react-router-dom';
-import LectionsContainer from './components/Lections/LectionsContainer';
-import LectionsEdit from './components/Lections/LectionsEdit/LectionsEdit';
-import React from 'react';
-import { logout } from './redux/actions/auth';
-import { connect } from 'react-redux';
-import Home from './components/Home/Home';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
-import { history } from './helpers/history';
-import QuestionsContainer from './components/Questions/QuestionsContainer';
-import LectionsPageForStudents from './components/Lections/LectionsPageForStudents';
-import QuizPage from './components/Answers/QuizPage';
-import Answers from './components/Answers/Answers';
+import './App.css'
+import { Link, Route, Router, Switch } from 'react-router-dom'
+import LectionsContainer from '../Lections/LectionsContainer'
+import LectionsEdit from '../LectionEdit/LectionEditContainer'
+import React from 'react'
+import Home from '../Home/Home'
+import Login from '../Login/LoginContainer'
+import Register from '../Register/RegisterContainer'
+import { history } from '../../helpers/history'
+import QuestionsContainer from '../Questions/QuestionsContainer'
+import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudentsContainer'
+import QuizPage from '../QuizPage.tsx/QuizPageContainer'
+import Answers from '../Answers/AnswersContainer'
+import { CurrentUser } from '../../redux/type'
+import { StatePropsType, DispatchPropsType } from './AppPropsTypes'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.logOut = this.logOut.bind(this);
+type PropsType = StatePropsType & DispatchPropsType
 
-    this.state = {
-      showLecturerBoard: false,
-      showStudentBoard: false,
-      currentUser: undefined
-    }
+type StateType = {
+  showLecturerBoard: boolean,
+  showStudentBoard: boolean,
+  currentUser: CurrentUser | undefined
+}
+
+export class App extends React.Component<PropsType, StateType> {
+  state: StateType = {
+    showLecturerBoard: false,
+    showStudentBoard: false,
+    currentUser: undefined
   }
 
   componentDidMount() {
-    const user = this.props.user;
+    const user = this.props.currentUser;
 
     if (user) {
       this.setState({
@@ -38,8 +41,8 @@ class App extends React.Component {
     }
   }
 
-  logOut() {
-    this.props.dispatch(logout());
+  logout = () => {
+    this.props.logout();
   }
 
   render() {
@@ -80,7 +83,7 @@ class App extends React.Component {
             {currentUser ? (
               <span className="nav-item">
                 {currentUser.username}
-                <a href="/login" onClick={this.logOut}>
+                <a href="/login" onClick={this.logout}>
                   Выйти
                 </a>
               </span>
@@ -116,10 +119,3 @@ class App extends React.Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  const { user } = state.auth;
-  return { user };
-}
-
-export default connect(mapStateToProps)(App);

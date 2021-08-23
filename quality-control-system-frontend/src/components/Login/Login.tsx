@@ -1,34 +1,19 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { connect } from "react-redux";
-import { login } from "../../redux/actions/auth"
-
-import { StateType } from './../../redux/reducers/index'
-
-type StatePropsType = {
-    isLoggedIn: boolean
-}
-
-type DispatchPropsType = {
-    login: (username: string, password: string) => void
-}
+import { StatePropsType, DispatchPropsType } from './LoginPropsTypes'
 
 type PropsType = StatePropsType & DispatchPropsType
 
-type MyStateType = {
+type StateType = {
     username: string,
     password: string
 }
 
-class Login extends React.Component<PropsType, MyStateType> {
-    constructor(props: PropsType) {
-        super(props);
-
-        this.state = {
-            username: "",
-            password: ""
-        };
+export class Login extends React.Component<PropsType, StateType> {
+    state: StateType = {
+        username: "",
+        password: ""
     }
 
     onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +32,7 @@ class Login extends React.Component<PropsType, MyStateType> {
         e.preventDefault();
 
         this.props.login(this.state.username, this.state.password)
+        
     }
 
     render() {
@@ -71,13 +57,3 @@ class Login extends React.Component<PropsType, MyStateType> {
         )
     }
 }
-
-function mapStateToProps(state: StateType): StatePropsType {
-    const { isLoggedIn } = state.auth;
-    return {
-      isLoggedIn,
-    };
-  }
-  
-  export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { login })(Login);

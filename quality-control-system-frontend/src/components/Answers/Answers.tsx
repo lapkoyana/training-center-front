@@ -1,20 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import { connect } from 'react-redux';
-import { setAnswers, setUsers, setLections } from '../../redux/actions/answers-lect'
-import { StateType } from './../../redux/reducers/index'
-import { LectionsType, UsersType, AnswersType } from './../../redux/type'
-
-type StatePropsType = {
-    lections: Array<LectionsType>,
-    users: Array<UsersType>,
-    answers: Array<AnswersType>
-}
-
-type DispatchPropsType = {
-    setAnswers: () => void,
-    setUsers: () => void,
-    setLections: () => void
-}
+import { AnswersType } from './../../redux/type'
+import { StatePropsType, DispatchPropsType } from './AnswersPropsTypes'
 
 type PropsType = StatePropsType & DispatchPropsType
 
@@ -26,7 +12,7 @@ type MyStateType = {
     answers: Array<AnswersType>
 }
 
-class Answers extends React.Component<PropsType, MyStateType> {
+export class Answers extends React.Component<PropsType, MyStateType> {
 
     constructor(props: PropsType) {
         super(props);
@@ -80,7 +66,6 @@ class Answers extends React.Component<PropsType, MyStateType> {
                 answers: currentAnswers
             })
     }
-    
 
     render() {
         return <div>
@@ -101,14 +86,3 @@ class Answers extends React.Component<PropsType, MyStateType> {
         </div>
     }
 }
-
-let mapStateToProps = (state: StateType): StatePropsType => {
-    return {
-        lections: state.answersLect.lections,
-        users: state.answersLect.users,
-        answers: state.answersLect.answers
-    }
-}
-
-export default connect<StatePropsType, DispatchPropsType, {}, StateType>
-    (mapStateToProps, { setAnswers, setUsers, setLections })(Answers);
