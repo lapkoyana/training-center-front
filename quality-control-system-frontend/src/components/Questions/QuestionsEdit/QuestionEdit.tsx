@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { QuestionsType } from '../../../redux/type'
+import { QuestionsType } from '../../../constants'
 import { OwnPropsType } from './QuestionEditPropsType'
 
 type StateType = {

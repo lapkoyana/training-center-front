@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
 import QuestionEdit from './QuestionsEdit/QuestionEdit';
-import { QuestionsType } from '../../redux/type'
+import { QuestionsType } from '../../constants'
 import { StatePropsType, DispatchPropsType, PathParamType } from './QuestionsPropsTypes'
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>

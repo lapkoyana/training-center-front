@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { ActionType } from '../reducers/questions'
 import QuestionsService from "../../services/QuestionsService";
-import { QuestionsType } from "../type"
-import { setQuestionsAction, addQuestionsAction, editQuestionsAction, deleteQuestionsAction } from "../type"
+import { QuestionsType } from "../../constants"
+import { setQuestionsAction, addQuestionsAction, editQuestionsAction, deleteQuestionsAction } from "../../constants"
 
 
 export const setQuestions = (lessonId: number) => (dispatch: Dispatch<ActionType>) => {

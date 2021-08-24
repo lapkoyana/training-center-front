@@ -1,10 +1,10 @@
-import { LoginType, RegisterSuccessType, RegisterFailType, LogoutType } from './../type';
+import { LoginType, RegisterSuccessType, RegisterFailType, LogoutType } from '../../constants';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     LOGIN_SUCCESS,
     LOGOUT,
-} from "../type";
+} from "../../constants";
 
 let storedUser = localStorage.getItem("user")
 let currentUser = null

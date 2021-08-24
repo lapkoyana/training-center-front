@@ -1,6 +1,6 @@
-import { SetLectionsType, SetAnswersType, SetUsersType } from './../type';
-import { SET_ANSWERS, SET_USERS, SET_LECTIONS } from '../type'
-import { LectionsType, UsersType, AnswersType } from '../type'
+import { SetLectionsType, SetAnswersType, SetUsersType } from '../../constants';
+import { SET_ANSWERS, SET_USERS, SET_LECTIONS } from '../../constants'
+import { LectionsType, UsersType, AnswersType } from '../../constants'
 
 let initialState = {
     answers: [] as Array<AnswersType>,

@@ -1,4 +1,4 @@
-import { QuestionsType, StudentAnswersType } from '../../redux/type'
+import { QuestionsType, StudentAnswersType } from '../../constants'
 
 export type StatePropsType = {
     questions: Array<QuestionsType>

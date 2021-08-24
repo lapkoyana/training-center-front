@@ -1,9 +1,9 @@
-import { DeleteLectionType, LectionsType, SetLectionsType, AddLectionType, EditLectionType, SetCurrentLectionType } from './../type';
+import { DeleteLectionType, LectionsType, SetLectionsType, AddLectionType, EditLectionType, SetCurrentLectionType } from '../../constants';
 import {SET_LECTIONS,
         DELETE_LECTION,
         ADD_LECTION,
         EDIT_LECTION,
-        SET_CURRENT_LECTION } from '../type'
+        SET_CURRENT_LECTION } from '../../constants'
 
 
 let initialState = {

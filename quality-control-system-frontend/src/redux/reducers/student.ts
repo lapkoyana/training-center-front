@@ -1,11 +1,11 @@
-import { SetLectionsType, SetUserLessonType, AddAnswersType, SetFileType, SetStudentAnswersType } from './../type';
+import { SetLectionsType, SetUserLessonType, AddAnswersType, SetFileType, SetStudentAnswersType } from '../../constants';
 import {SET_LECTIONS,
         SET_USER_LESSON,
         ADD_ANSWERS,
         SET_ANSWERS,
-        SET_FILE } from '../type'
+        SET_FILE } from '../../constants'
 
-import {StudentAnswersType, LectionsType, UserLessonsType} from '../type'
+import {StudentAnswersType, LectionsType, UserLessonsType} from '../../constants'
 
 type InitialStateType = {
     lections: Array<LectionsType>,

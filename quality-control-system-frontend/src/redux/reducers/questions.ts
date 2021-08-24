@@ -1,10 +1,10 @@
-import { SetQuestionsType, AddQuestionsType, EditQuestionsType, DeleteQuestionsType } from './../type';
+import { SetQuestionsType, AddQuestionsType, EditQuestionsType, DeleteQuestionsType } from '../../constants';
 import {SET_QUESTIONS,
     DELETE_QUESTION,
     ADD_QUESTION,
-    EDIT_QUESTION} from '../type'
+    EDIT_QUESTION} from '../../constants'
 
-import {QuestionsType} from '../type'
+import {QuestionsType} from '../../constants'
 
 
 let initialState = {

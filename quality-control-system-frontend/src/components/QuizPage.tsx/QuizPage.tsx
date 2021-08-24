@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
 import { StatePropsType, DispatchPropsType } from './QuizPagePropsTypes'
-import { StudentAnswersType } from '../../redux/type'
+import { StudentAnswersType } from '../../constants'
 
 type PathParamType = {lectionId: string}
 

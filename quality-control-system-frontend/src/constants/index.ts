@@ -232,3 +232,66 @@ export const registerFailAction = (): RegisterFailType => ({type: REGISTER_FAIL}
 
 export type LogoutType = {type: typeof LOGOUT}
 export const logoutAction = (): LogoutType => ({type: LOGOUT})
+
+export interface IInitialState {
+    answersLect: {
+        answers: Array<AnswersType>,
+        lections: Array<LectionsType>,
+        users: Array<UsersType>
+    }
+    auth: {
+        isLoggedIn: boolean,
+        currentUser: CurrentUser
+    }
+    lesson: {
+        lections: Array<LectionsType>,
+        currentLection: LectionsType
+    }
+    question: {
+        questions: Array<QuestionsType>
+    }
+    students: {
+        answers: Array<StudentAnswersType>,
+        file: string | undefined
+        lections: Array<LectionsType>,
+        userLessons: Array<UserLessonsType>,
+    }
+}
+
+export const initialState: IInitialState = {
+    answersLect: {
+        answers: [],
+        lections: [],
+        users: []
+    },
+    auth: {
+        isLoggedIn: false,
+        currentUser: {
+            token: "",
+            type: "",
+            id: 0,
+            username: "",
+            roles: []
+        }
+    },
+    lesson: {
+        lections: [],
+        currentLection: {
+            id: 0,
+            topic: "",
+            dateOfClass: "",
+            lectureFile: "",
+            signOfCompleteness: false
+            
+        }
+    },
+    question: {
+        questions: []
+    },
+    students: {
+        answers: [],
+        file: undefined,
+        lections: [],
+        userLessons: [],
+    }
+}

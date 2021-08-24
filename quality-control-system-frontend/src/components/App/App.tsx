@@ -11,7 +11,7 @@ import QuestionsContainer from '../Questions/QuestionsContainer'
 import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudentsContainer'
 import QuizPage from '../QuizPage.tsx/QuizPageContainer'
 import Answers from '../Answers/AnswersContainer'
-import { CurrentUser } from '../../redux/type'
+import { CurrentUser } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './AppPropsTypes'
 
 type PropsType = StatePropsType & DispatchPropsType

@@ -1,4 +1,4 @@
-import { LectionsType } from '../../redux/type'
+import { LectionsType } from '../../constants'
 
 export type StatePropsType = {
     lections: Array<LectionsType>

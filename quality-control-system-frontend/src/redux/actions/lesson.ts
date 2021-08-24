@@ -6,7 +6,7 @@ import { LectionsType,
         deleteLectionAction,
         editLectionAction,
         addLectionAction,
-        setCurrentLectionAction } from './../type';
+        setCurrentLectionAction } from '../../constants';
 
 
 export const setLections = () => async (dispatch: Dispatch<ActionType>) => {

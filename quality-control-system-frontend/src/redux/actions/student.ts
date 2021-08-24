@@ -1,8 +1,8 @@
 import {Dispatch} from 'redux';
 import { ActionType } from '../reducers/student'
 import StudentService from "../../services/StudentService";
-import { StudentAnswersType } from './../type';
-import { addAnswersAction, setUserLessonAction, setLectionsAction, setFileAction } from './../type';
+import { StudentAnswersType } from '../../constants';
+import { addAnswersAction, setUserLessonAction, setLectionsAction, setFileAction } from '../../constants';
 
 export const setLections = () => async (dispatch: Dispatch<ActionType>) => {
     return await StudentService.getLessons()

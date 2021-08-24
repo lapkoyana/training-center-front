@@ -1,18 +1,8 @@
 import { combineReducers } from "redux";
-import lesson from "./lesson";
-import auth from "./auth";
-import question from "./questions";
-import student from "./student";
-import answersLect from "./answers-lect";
-
-
+import root from './root'
 
 let rootReducer = combineReducers({
-    lesson,
-    question,
-    student,
-    answersLect,
-    auth
+    qcsApp: root
 })
 
 type RootReducerType = typeof rootReducer

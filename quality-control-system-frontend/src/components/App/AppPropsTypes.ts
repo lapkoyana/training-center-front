@@ -1,4 +1,4 @@
-import { CurrentUser } from '../../redux/type'
+import { CurrentUser } from '../../constants'
 
 export type StatePropsType = {
     currentUser: CurrentUser

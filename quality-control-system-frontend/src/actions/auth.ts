@@ -1,13 +1,13 @@
 import { Dispatch } from 'redux';
-import { ActionType } from '../reducers/auth'
-import AuthenticationService from "../../services/AuthenticationService";
+import { LoginType, LogoutType, RegisterSuccessType, RegisterFailType } from './../constants/index'
+import AuthenticationService from "./../services/AuthenticationService";
 import {REGISTER_SUCCESS,
         REGISTER_FAIL,
-        LOGOUT} from '../type'
+        LOGOUT} from './../constants/index'
 
-import { loginAction } from '../type'
+import { loginAction } from './../constants/index'
 
-export const register = (username: string, password: string) => (dispatch: Dispatch<ActionType>) => {
+export const register = (username: string, password: string) => (dispatch: Dispatch< RegisterFailType | RegisterSuccessType >) => {
     return AuthenticationService.register(username, password).then(
         (response) => {
             dispatch({
@@ -24,7 +24,7 @@ export const register = (username: string, password: string) => (dispatch: Dispa
     );
 };
 
-export const login = (username: string, password: string) => async (dispatch: Dispatch<ActionType>) => {
+export const login = (username: string, password: string) => async (dispatch: Dispatch<LoginType>) => {
     return await AuthenticationService.login(username, password).then(
         (data) => {
             dispatch(loginAction(data))
@@ -33,7 +33,7 @@ export const login = (username: string, password: string) => async (dispatch: Di
     );
 };
 
-export const logout = () => (dispatch: Dispatch<ActionType>) => {
+export const logout = () => (dispatch: Dispatch<LogoutType>) => {
     AuthenticationService.logout();
     dispatch({
         type: LOGOUT

@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import LectionsService from "../../services/LectionsService"
-import { SET_USERS, SET_LECTIONS } from "../type"
-import { setAnswersAction } from '../type';
+import { SET_USERS, SET_LECTIONS } from "../../constants"
+import { setAnswersAction } from '../../constants';
 import { ActionType } from '../reducers/answers-lect'
 
 export const setLections = () => async (dispatch: Dispatch<ActionType>) => {

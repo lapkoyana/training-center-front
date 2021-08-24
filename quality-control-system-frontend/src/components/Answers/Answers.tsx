@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { AnswersType } from './../../redux/type'
+import { AnswersType } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './AnswersPropsTypes'
 
 type PropsType = StatePropsType & DispatchPropsType

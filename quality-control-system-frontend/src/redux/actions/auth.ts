@@ -3,9 +3,9 @@ import { ActionType } from '../reducers/auth'
 import AuthenticationService from "../../services/AuthenticationService";
 import {REGISTER_SUCCESS,
         REGISTER_FAIL,
-        LOGOUT} from '../type'
+        LOGOUT} from '../../constants'
 
-import { loginAction } from '../type'
+import { loginAction } from '../../constants'
 
 export const register = (username: string, password: string) => (dispatch: Dispatch<ActionType>) => {
     return AuthenticationService.register(username, password).then(

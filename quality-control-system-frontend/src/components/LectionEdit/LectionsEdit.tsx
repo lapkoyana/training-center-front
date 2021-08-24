@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { LectionsType } from '../../redux/type'
+import { LectionsType } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './LectionEditPropsTypes'
 
 type PathParamType = {id: string}
