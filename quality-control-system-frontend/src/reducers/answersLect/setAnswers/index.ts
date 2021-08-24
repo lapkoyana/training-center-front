@@ -1,18 +1,14 @@
+import { initialState } from './../../../constants/index';
 import { SetAnswersType } from '../../../constants'
 import { SET_ANSWERS } from '../../../constants'
 import { AnswersType } from '../../../constants'
 
-let initialState = {
-    answers: [] as Array<AnswersType>
-};
-
-type InitialStateType = typeof initialState
-
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action: SetAnswersType): InitialStateType => {
+export default (state = initialState.answersLect.answers, action: SetAnswersType): Array<AnswersType> => {
     return action.type === SET_ANSWERS
     ? { ...state,
+        //чето ему не нравится этот answers, который из initialState
         answers: action.answers
     }
-    : state;
+    : state
 }

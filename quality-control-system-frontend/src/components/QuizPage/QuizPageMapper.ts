@@ -1,8 +1,8 @@
 import { IInitialState } from '../../constants' 
-import { StatePropsType } from './LectionEditPropsTypes'
+import { StatePropsType } from './QuizPagePropsTypes'
 
 export const mapStateToProps = (state: IInitialState): StatePropsType => {
     return {
-        currentLection: state.lesson.currentLection
+        questions: state.question.questions
     }
 }

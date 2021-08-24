@@ -1,7 +1,6 @@
-import { StateType } from '../../reducers/index'
+import { IInitialState } from './../../constants/index';
 import { StatePropsType } from './AppPropsTypes'
 
-export function mapStateToProps(state: StateType): StatePropsType {
-    const { currentUser } = state.qcsApp.auth.loginSuccess.currentUser;
-    return { currentUser };
+export function mapStateToProps(state: IInitialState): StatePropsType {
+    return { currentUser: state.auth.currentUser };
   }

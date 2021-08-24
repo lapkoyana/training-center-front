@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import style from './Lections.module.css';
+// import style from './Lections.module.css';
 import { PropsType } from './LectionsListPropsTypes'
 
 const LectionsList: React.FC<PropsType> = (props) => {
     
     return <div >
-        { props.lections.map( l => <div className={style.lectionItem} key={l.id}>
+        { props.lections.map( l => <div key={l.id}>
             <div>Тема: {l.topic}</div>
             <div>Дата проведения: {l.dateOfClass}</div>
             <div>{l.lectureFile
@@ -15,11 +15,11 @@ const LectionsList: React.FC<PropsType> = (props) => {
             <div>{l.signOfCompleteness
                 ? 'Лекция завершена'
                 : 'Лекция не завершена'}</div>
-            <Link className={style.questionLink} to={'/lections/' + l.id + '/questions'}>Список вопросов</Link>
+            <Link to={'/lections/' + l.id + '/questions'}>Список вопросов</Link>
             <Link onClick={() => props.setCurrentLection(l.id!)} to={"/lections/" + l.id}><button>Редактировать</button></Link>
             <button onClick={() => props.delete(l.id!)}>Удалить</button>
         </div>)}
-        <Link to='/lections/new'><button className={style.addingButton}>Добавить лекцию</button></Link>
+        <Link to='/lections/new'><button>Добавить лекцию</button></Link>
     </div>
 }
 

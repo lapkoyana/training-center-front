@@ -1,9 +1,8 @@
-import { StateType } from '../../reducers/index'
+import { IInitialState } from '../../constants'; 
 import { StatePropsType } from './LoginPropsTypes'
 
-export function mapStateToProps(state: StateType): StatePropsType {
-    const { isLoggedIn } = state.qcsApp.auth.loginSuccess.isLoggedIn;
-    return {
-      isLoggedIn,
-    };
+export function mapStateToProps(state: IInitialState): StatePropsType {
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
   }
+}

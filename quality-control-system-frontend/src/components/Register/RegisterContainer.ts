@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { register } from '../../redux/actions/auth'
+import { register } from '../../actions/auth' 
 import { DispatchPropsType } from './RegisterPropsTypes'
 import { Register } from './Register'
 

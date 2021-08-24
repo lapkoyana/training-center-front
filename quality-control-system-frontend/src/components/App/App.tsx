@@ -9,7 +9,7 @@ import Register from '../Register/RegisterContainer'
 import { history } from '../../helpers/history'
 import QuestionsContainer from '../Questions/QuestionsContainer'
 import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudentsContainer'
-import QuizPage from '../QuizPage.tsx/QuizPageContainer'
+import QuizPage from '../QuizPage/QuizPageContainer'
 import Answers from '../Answers/AnswersContainer'
 import { CurrentUser } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './AppPropsTypes'
@@ -106,10 +106,10 @@ export class App extends React.Component<PropsType, StateType> {
               <Route exact path={"/"} component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path='/lections' render={() => <LectionsContainer />} />
+              <Route exact path='/lections' component={LectionsContainer} />
               <Route exact path='/lections/answers' component={Answers} />
               <Route exact path='/lections/:id' component={LectionsEdit} />
-              <Route exact path='/lections/:id/questions' render={() => <QuestionsContainer />} />
+              <Route exact path='/lections/:id/questions' component={QuestionsContainer} />
               <Route exact path='/lessons' component={LectionsPageForStudents} />
               <Route exact path='/lessons/:id/questions' component={QuizPage} />
             </Switch>

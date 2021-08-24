@@ -1,9 +1,9 @@
-import { StateType } from '../../reducers/index'
+import { IInitialState } from '../../constants' 
 import { StatePropsType } from './LectionsPageForStudentsPropsTypes'
 
-export const mapStateToProps = (state: StateType): StatePropsType => {
+export const mapStateToProps = (state: IInitialState): StatePropsType => {
     return {
-        lections: state.qcsApp.student.setLections.lections,
-        file: state.qcsApp.student.setFile.file
+        lections: state.students.lections,
+        file: state.students.file
     }
 }

@@ -233,12 +233,20 @@ export const registerFailAction = (): RegisterFailType => ({type: REGISTER_FAIL}
 export type LogoutType = {type: typeof LOGOUT}
 export const logoutAction = (): LogoutType => ({type: LOGOUT})
 
+export type IAnswersLect = {
+    answers: Array<AnswersType>,
+    users: Array<UsersType>,
+    lections: Array<LectionsType>
+}
+
+export const initialAnswersLect: IAnswersLect = {
+    answers: [],
+    lections: [],
+    users: []
+}
+
 export interface IInitialState {
-    answersLect: {
-        answers: Array<AnswersType>,
-        lections: Array<LectionsType>,
-        users: Array<UsersType>
-    }
+    answersLect: IAnswersLect
     auth: {
         isLoggedIn: boolean,
         currentUser: CurrentUser
@@ -259,11 +267,7 @@ export interface IInitialState {
 }
 
 export const initialState: IInitialState = {
-    answersLect: {
-        answers: [],
-        lections: [],
-        users: []
-    },
+    answersLect: initialAnswersLect,
     auth: {
         isLoggedIn: false,
         currentUser: {
