@@ -1,25 +1,11 @@
 import { LoginType } from '../../../constants';
 import { LOGIN_SUCCESS } from '../../../constants';
-
-let storedUser = localStorage.getItem("user")
-let currentUser = null
-
-if (typeof storedUser === 'string'){
-    currentUser = JSON.parse(storedUser)
-}
-
-const initialState = currentUser
-    ? { isLoggedIn: true, currentUser }
-    : { isLoggedIn: false, currentUser: null }
-
-type InitialStateType = typeof initialState
+import { initialState, UserLoginType } from './../../../constants/index';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action: LoginType): InitialStateType => {
+export default (state = initialState.auth.isLoggedIn, action: LoginType): UserLoginType => {
+    //нзнзнзнзнзнзнзнзнзнз
     return action.type === LOGIN_SUCCESS
-    ? {
-        ...state,
-        isLoggedIn: false
-    }
+    ? action.payload
     : state
 }

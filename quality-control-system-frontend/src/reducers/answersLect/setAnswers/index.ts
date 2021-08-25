@@ -6,9 +6,6 @@ import { AnswersType } from '../../../constants'
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState.answersLect.answers, action: SetAnswersType): Array<AnswersType> => {
     return action.type === SET_ANSWERS
-    ? { ...state,
-        //чето ему не нравится этот answers, который из initialState
-        answers: action.answers
-    }
+    ? action.answers
     : state
 }

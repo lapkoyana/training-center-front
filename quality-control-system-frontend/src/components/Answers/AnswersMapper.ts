@@ -1,7 +1,7 @@
-import { IInitialState } from '../../constants/index'
 import { StatePropsType } from './AnswersPropsTypes'
 
-export const mapStateToProps = (state: IInitialState): StatePropsType => {
+//че за state?
+export const mapStateToProps = (state: any): StatePropsType => {
     return {
         //answersLect undefined )))
         answers: state.answersLect.answers,

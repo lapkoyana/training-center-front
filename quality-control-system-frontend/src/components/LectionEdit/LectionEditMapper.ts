@@ -1,7 +1,6 @@
-import { IInitialState } from '../../constants' 
 import { StatePropsType } from './LectionEditPropsTypes'
 
-export const mapStateToProps = (state: IInitialState): StatePropsType => {
+export const mapStateToProps = (state: any): StatePropsType => {
     return {
         currentLection: state.lesson.currentLection
     }

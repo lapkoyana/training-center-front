@@ -1,7 +1,6 @@
-import { IInitialState } from '../../constants'; 
 import { StatePropsType } from './LoginPropsTypes'
 
-export function mapStateToProps(state: IInitialState): StatePropsType {
+export const mapStateToProps = (state: any)  => {
   return {
     isLoggedIn: state.auth.isLoggedIn,
   }

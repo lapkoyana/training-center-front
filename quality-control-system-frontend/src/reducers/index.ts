@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import root from './root'
 
-let rootReducer = combineReducers({
+const rootReducer = combineReducers({
     qcsApp: root
 })
 

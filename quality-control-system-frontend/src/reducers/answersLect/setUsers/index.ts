@@ -1,18 +1,12 @@
 import { SetUsersType } from '../../../constants'
 import { SET_USERS } from '../../../constants'
 import { UsersType } from '../../../constants'
+import { initialState } from '../../../constants'
 
-let initialState = {
-    users: [] as Array<UsersType>
-};
-
-type InitialStateType = typeof initialState
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action: SetUsersType): InitialStateType => {
+export default (state = initialState.answersLect.users, action: SetUsersType): Array<UsersType> => {
     return action.type === SET_USERS
-    ? { ...state,
-        users: action.users
-    }
+    ? action.users
     : state;
 }

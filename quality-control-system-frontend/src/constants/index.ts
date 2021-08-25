@@ -31,14 +31,6 @@ export type LectionsType = {
     completeness?: boolean
 }
 
-export type CurrentUser = {
-    token: string,
-    type: string,
-    id: number,
-    username: string,
-    roles: Array<string>
-}
-
 export type UsersType = {
     id: number
     username: string
@@ -213,8 +205,6 @@ export const addLectionAction = (lection: LectionsType): AddLectionType => ({
     lection
 })
 
-
-
 export type LoginType = {
     type: typeof LOGIN_SUCCESS,
     payload: UserLoginType
@@ -239,18 +229,50 @@ export type IAnswersLect = {
     lections: Array<LectionsType>
 }
 
+export type IAuth = {
+    isLoggedIn: boolean,
+    currentUser: UserLoginType | null
+}
+
 export const initialAnswersLect: IAnswersLect = {
     answers: [],
     lections: [],
     users: []
 }
 
+let storedUser = localStorage.getItem("user")
+let currentUser1 = null
+
+if (typeof storedUser === 'string'){
+    currentUser1 = JSON.parse(storedUser)
+}
+
+let initialAuth: IAuth = {
+    isLoggedIn: false,
+    currentUser: null
+}
+// нзнзнзнзнзнзнзн!!!
+if (currentUser1) {
+    initialAuth = {
+        isLoggedIn: true, 
+        currentUser: {
+            token: "",
+            type: "",
+            id: 0,
+            username: "",
+            roles: []
+        }
+    }
+} else {
+    initialAuth = {
+        isLoggedIn: false,
+        currentUser: null
+    }
+}
+
 export interface IInitialState {
     answersLect: IAnswersLect
-    auth: {
-        isLoggedIn: boolean,
-        currentUser: CurrentUser
-    }
+    auth: IAuth
     lesson: {
         lections: Array<LectionsType>,
         currentLection: LectionsType
@@ -261,23 +283,16 @@ export interface IInitialState {
     students: {
         answers: Array<StudentAnswersType>,
         file: string | undefined
-        lections: Array<LectionsType>,
-        userLessons: Array<UserLessonsType>,
+        userLessons: {
+            lections: Array<LectionsType>,
+            userLessons: Array<UserLessonsType>,
+        }
     }
 }
 
 export const initialState: IInitialState = {
     answersLect: initialAnswersLect,
-    auth: {
-        isLoggedIn: false,
-        currentUser: {
-            token: "",
-            type: "",
-            id: 0,
-            username: "",
-            roles: []
-        }
-    },
+    auth: initialAuth,
     lesson: {
         lections: [],
         currentLection: {
@@ -295,7 +310,9 @@ export const initialState: IInitialState = {
     students: {
         answers: [],
         file: undefined,
-        lections: [],
-        userLessons: [],
+        userLessons: {
+            lections: [],
+            userLessons: []
+        }
     }
 }

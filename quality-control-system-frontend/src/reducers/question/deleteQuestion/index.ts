@@ -1,18 +1,9 @@
 import { QuestionsType, DeleteQuestionsType, DELETE_QUESTION} from '../../../constants'
-
-
-let initialState = {
-    questions: [] as Array<QuestionsType>
-};
-
-type InitialStateType = typeof initialState
+import { initialState } from './../../../constants/index';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action: DeleteQuestionsType): InitialStateType => {
+export default (state = initialState.question.questions, action: DeleteQuestionsType): Array<QuestionsType> => {
     return action.type === DELETE_QUESTION
-    ? {
-        ...state,
-        questions: state.questions.filter(l => l.id !== action.questionId)
-    }
+    ? state.filter(l => l.id !== action.questionId)
     : state
 }

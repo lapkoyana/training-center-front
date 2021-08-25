@@ -1,6 +1,6 @@
 import { LectionsType, UsersType, AnswersType } from '../../constants'
 
-export type StatePropsType = {
+export interface StatePropsType {
     lections: Array<LectionsType>,
     users: Array<UsersType>,
     answers: Array<AnswersType>
