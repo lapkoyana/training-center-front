@@ -1,19 +1,15 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { Redirect } from 'react-router-dom';
-
-import { StatePropsType, DispatchPropsType } from './LoginPropsTypes'
-
-type PropsType = StatePropsType & DispatchPropsType
+import { DispatchPropsType } from './IRegister'
 
 type StateType = {
     username: string,
-    password: string
+    password: string,
 }
 
-export class Login extends React.Component<PropsType, StateType> {
+export class Register extends React.Component<DispatchPropsType, StateType> {
     state: StateType = {
         username: "",
-        password: ""
+        password: "",
     }
 
     onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,26 +21,20 @@ export class Login extends React.Component<PropsType, StateType> {
     onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             password: e.target.value,
-          });
+        })
     }
 
-    handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    handleRegister = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        this.props.login(this.state.username, this.state.password)
-        
+
+        this.props.register(this.state.username, this.state.password)
     }
 
     render() {
-        const { isLoggedIn } = this.props;
-
-        if (isLoggedIn) {
-            return <Redirect to="/" />;
-        }
-
-        return (
-            <form onSubmit={this.handleLogin}>
-                <div><label>
+        return <form onSubmit={this.handleRegister}>
+                <div>
+                    <div><label>
                     Логин:
                     <input type="text" name="username" onChange={this.onChangeUsername} value={this.state.username}/>
                 </label></div>
@@ -52,8 +42,8 @@ export class Login extends React.Component<PropsType, StateType> {
                     Пароль:
                     <input type="text" name="password" onChange={this.onChangePassword} value={this.state.password}/>
                 </label></div>
-                <input type="submit" value="ОК" />
-            </form>
-        )
+            </div>
+            <input type="submit" value="ОК" />
+        </form>
     }
 }

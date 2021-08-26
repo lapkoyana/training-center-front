@@ -1,25 +1,25 @@
 import './App.css'
 import { Link, Route, Router, Switch } from 'react-router-dom'
-import LectionsContainer from '../Lections/LectionsContainer'
-import LectionsEdit from '../LectionEdit/LectionEditContainer'
+import LectionsContainer from '../Lections/Lections'
+import LectionsEdit from '../LectionEdit/LectionEdit'
 import React from 'react'
 import Home from '../Home/Home'
-import Login from '../Login/LoginContainer'
-import Register from '../Register/RegisterContainer'
+import Login from '../Login/Login'
+import Register from '../Register/Register'
 import { history } from '../../helpers/history'
-import QuestionsContainer from '../Questions/QuestionsContainer'
-import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudentsContainer'
-import QuizPage from '../QuizPage/QuizPageContainer'
-import Answers from '../Answers/AnswersContainer'
-import { CurrentUser } from '../../constants'
-import { StatePropsType, DispatchPropsType } from './AppPropsTypes'
+import QuestionsContainer from '../Questions/Questions'
+import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
+import QuizPage from '../QuizPage/QuizPage'
+import Answers from '../Answers/Answers'
+import { UserLoginType } from '../../constants'
+import { StatePropsType, DispatchPropsType } from './IApp'
 
 type PropsType = StatePropsType & DispatchPropsType
 
 type StateType = {
   showLecturerBoard: boolean,
   showStudentBoard: boolean,
-  currentUser: CurrentUser | undefined
+  currentUser: UserLoginType | undefined
 }
 
 export class App extends React.Component<PropsType, StateType> {

@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { AnswersType } from '../../constants'
-import { StatePropsType, DispatchPropsType } from './AnswersPropsTypes'
+import { StatePropsType, DispatchPropsType } from './IAnswers'
 
 type PropsType = StatePropsType & DispatchPropsType
 

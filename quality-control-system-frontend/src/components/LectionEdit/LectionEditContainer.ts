@@ -1,10 +1,8 @@
-import { connect } from 'react-redux';
-import { IInitialState } from '../../constants' 
-import { StatePropsType, DispatchPropsType } from './LectionEditPropsTypes'
-import { withRouter } from 'react-router-dom';
-import { LectionEdit } from './LectionsEdit';
-import { addOrUpdateLection } from '../../actions/lesson'; 
-import { mapStateToProps } from './LectionEditMapper';
+import { StatePropsType } from './ILectionEdit'
+import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-    (mapStateToProps, { addOrUpdateLection }) (withRouter(LectionEdit));
+export const mapStateToProps = (state: StateType): StatePropsType => {
+    return {
+        currentLection: state.lesson.currentLection
+    }
+}

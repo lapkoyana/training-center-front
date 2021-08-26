@@ -1,6 +1,6 @@
 import React from 'react';
 import LectionsList from "./LectionsList/LectionsList";
-import { StatePropsType, DispatchPropsType } from './LectionsPropsTypes'
+import { StatePropsType, DispatchPropsType } from './ILections'
 
 type PropsType = StatePropsType & DispatchPropsType
 

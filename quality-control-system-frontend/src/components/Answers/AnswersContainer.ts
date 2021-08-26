@@ -1,9 +1,11 @@
-import { connect } from 'react-redux'
-import { StatePropsType, DispatchPropsType } from './AnswersPropsTypes'
-import { IInitialState } from '../../constants/index'
-import { setAnswers, setUsers, setLections } from './../../actions/answers-lect';
-import { Answers } from './Answers'
-import { mapStateToProps } from './AnswersMapper'
+import { StatePropsType } from './IAnswers'
+// import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-    (mapStateToProps, { setAnswers, setUsers, setLections })(Answers);
+//any??????????????
+export const mapStateToProps = (state: any): StatePropsType => {
+    return {
+        answers: state.qcsApp.answersLect.answers,
+        users: state.qcsApp.answersLect.users,
+        lections: state.qcsApp.answersLect.lections
+    }
+}

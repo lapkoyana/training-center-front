@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { LectionsType } from '../../constants'
-import { StatePropsType, DispatchPropsType } from './LectionEditPropsTypes'
+import { StatePropsType, DispatchPropsType } from './ILectionEdit'
 
 type PathParamType = {id: string}
 

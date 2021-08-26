@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import { StatePropsType, DispatchPropsType } from './LectionsPageForStudentsPropsTypes'
-import { LectionsPageForStudents } from './LectionsPageForStudents'
-import { mapStateToProps } from './LectionsPageForStudentsMapper'
-import { IInitialState } from '../../constants';
-import { setLections, setUserLesson, getLessonFile } from './../../actions/student'
+import { StatePropsType } from './ILectionsPageForStudents'
+import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-    (mapStateToProps, { setLections, setUserLesson, getLessonFile }) (LectionsPageForStudents);
+export const mapStateToProps = (state: StateType): StatePropsType => {
+    return {
+        lections: state.students.lections,
+        file: state.students.file
+    }
+}

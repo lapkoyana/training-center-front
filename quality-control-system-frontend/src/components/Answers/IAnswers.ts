@@ -6,8 +6,12 @@ export interface StatePropsType {
     answers: Array<AnswersType>
 }
 
-export type DispatchPropsType = {
+export interface DispatchPropsType {
     setAnswers: () => void,
     setUsers: () => void,
     setLections: () => void
+}
+
+export interface OwnProps {
+    
 }

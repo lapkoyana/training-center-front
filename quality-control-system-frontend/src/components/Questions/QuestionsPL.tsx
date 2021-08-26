@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
 import QuestionEdit from './QuestionsEdit/QuestionEdit';
 import { QuestionsType } from '../../constants'
-import { StatePropsType, DispatchPropsType, PathParamType } from './QuestionsPropsTypes'
+import { StatePropsType, DispatchPropsType, PathParamType } from './IQuestions'
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 

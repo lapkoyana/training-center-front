@@ -1,9 +1,8 @@
-import { connect } from "react-redux";
-import { StatePropsType, DispatchPropsType } from './LectionsPropsTypes'
-import { IInitialState } from "../../constants"; 
-import { setLections, deleteLection, setCurrentLection } from './../../actions/lesson'
-import { mapStateToProps } from './LectionsMapping'
-import { Lections } from "./Lections";
+import { StatePropsType } from './ILections'
+import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-                (mapStateToProps, { setLections, deleteLection, setCurrentLection })(Lections);
+export const mapStateToProps = (state: StateType): StatePropsType => {
+    return {
+        lections: state.lesson.lections
+    }
+}

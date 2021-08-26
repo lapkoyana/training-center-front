@@ -1,10 +1,10 @@
 import { UserLessonsType, LectionsType, SetUserLessonType, SET_USER_LESSON } from '../../../constants'
 import { initialState } from './../../../constants/index';
 
-// type InitialStateType = {
-//     userLessons: Array<UserLessonsType>,
-//     lections: Array<LectionsType>,
-// };
+type InitialStateType = {
+    lections: Array<LectionsType>,
+    userLessons: Array<UserLessonsType>,
+}
 
 // let initialState: InitialStateType = {
 //     userLessons: [],
@@ -16,17 +16,21 @@ export default (state = initialState.students.userLessons, action: SetUserLesson
     //тут все пересмотретьпересмотретьпересмотретьпересмотретьпересмотретьпересмотреть
     return action.type === SET_USER_LESSON
     ? {
-        ...state,
-        userLessons: action.userLessons,
-        lections: state.lections.map(lection => {
-            lection.completeness = false;
-            action.userLessons.forEach(userLesson => {
-                if (lection.id === userLesson['lessonId']){
-                    lection.completeness = userLesson['signOfCompleteness'];
-                }
-            });
-            return lection;
-        })
+        state.userLessons: action.userLessons,
     }
-    : state
+    
+    // return action.type === SET_USER_LESSON
+    // ? 
+    // state.userLessons: action.userLessons,
+    // state.    state.lections.map(lection => {
+    //         lection.completeness = false;
+    //         action.userLessons.forEach(userLesson => {
+    //             if (lection.id === userLesson['lessonId']){
+    //                 lection.completeness = userLesson['signOfCompleteness'];
+    //             }
+    //         });
+    //         return lection;
+    //     })
+    // }
+    // : state
 }

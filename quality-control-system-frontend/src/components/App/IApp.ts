@@ -1,7 +1,7 @@
-import { CurrentUser } from '../../constants'
+import { UserLoginType } from '../../constants'
 
 export type StatePropsType = {
-    currentUser: CurrentUser
+    currentUser: UserLoginType
 }
 
 export type DispatchPropsType = {

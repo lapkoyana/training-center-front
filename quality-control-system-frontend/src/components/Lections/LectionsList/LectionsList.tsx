@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import style from './Lections.module.css';
-import { PropsType } from './LectionsListPropsTypes'
+import { PropsType } from './ILectionsList'
 
 const LectionsList: React.FC<PropsType> = (props) => {
     

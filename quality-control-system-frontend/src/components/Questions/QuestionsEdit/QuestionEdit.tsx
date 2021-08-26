@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import { QuestionsType } from '../../../constants'
-import { OwnPropsType } from './QuestionEditPropsType'
+import { OwnPropsType } from './IQuestionEdit'
 
 type StateType = {
     editMode: boolean,

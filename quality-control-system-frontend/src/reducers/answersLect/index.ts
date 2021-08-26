@@ -1,10 +1,10 @@
 import { combineReducers } from "redux"
-import setAnswers from "./setAnswers"
-import setLection from "./setLections"
-import setUsers from "./setUsers"
+import answers from "./answers"
+import lections from "./lections"
+import users from "./users"
 
 export default combineReducers({
-    setAnswers,
-    setLection,
-    setUsers
+    answers,
+    lections,
+    users
 })

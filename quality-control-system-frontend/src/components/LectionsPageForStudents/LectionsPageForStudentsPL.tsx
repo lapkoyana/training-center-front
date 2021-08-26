@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { StatePropsType, DispatchPropsType } from './LectionsPageForStudentsPropsTypes'
+import { StatePropsType, DispatchPropsType } from './ILectionsPageForStudents'
 
 export class LectionsPageForStudents extends React.Component<StatePropsType & DispatchPropsType> {
     componentDidMount() {

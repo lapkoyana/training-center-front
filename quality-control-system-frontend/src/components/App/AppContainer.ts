@@ -1,9 +1,6 @@
-import { connect } from 'react-redux'
-import { mapStateToProps } from './AppMapping' 
-import { logout } from '../../actions/auth' 
-import { App } from './App'
-import { IInitialState } from './../../constants/index'
-import { StatePropsType, DispatchPropsType } from './AppPropsTypes'
+import { StatePropsType } from './IApp'
+import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-    (mapStateToProps, { logout })(App);
+export function mapStateToProps(state: StateType): StatePropsType {
+    return { currentUser: state.qcsApp.lesson.addLections };
+  }

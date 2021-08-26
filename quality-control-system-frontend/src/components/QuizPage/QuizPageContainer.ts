@@ -1,11 +1,8 @@
-import { connect } from 'react-redux'
-import { StatePropsType, DispatchPropsType } from './QuizPagePropsTypes'
-import { IInitialState } from '../../constants' 
-import { mapStateToProps } from './QuizPageMapper'
-import { addAnswers } from '../../actions/student'
-import { setQuestions } from '../../actions/questions'
-import { withRouter } from 'react-router';
-import { QuizPage } from './QuizPage'
+import { StatePropsType } from './IQuizPage'
+import { StateType } from '../../reducers';
 
-export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-    (mapStateToProps, { setQuestions, addAnswers })(withRouter(QuizPage))
+export const mapStateToProps = (state: StateType): StatePropsType => {
+    return {
+        questions: state.question.questions
+    }
+}
