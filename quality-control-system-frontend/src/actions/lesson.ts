@@ -14,20 +14,28 @@ import { AddLectionType,
         SetLectionsType } from './../constants/index'
 
 
-export const setLections = () => async (dispatch: Dispatch<SetLectionsType>) => {
-    return await LectionsService.getLessons()
-    .then(response => response.json())
-    .then(data => 
-        dispatch(setLectionsAction(data))
-    )
+// export const setLections = () => async (dispatch: Dispatch<SetLectionsType>) => {
+//     return await LectionsService.getLessons()
+//     .then(response => response.json())
+//     .then(data => 
+//         dispatch(setLectionsAction(data))
+//     )
+// };
+
+export const setLections = (lections: Array<LectionsType>) => {
+    return setLectionsAction(lections)
 };
 
-export const setCurrentLection = (id: number) => async (dispatch: Dispatch<SetCurrentLectionType>) => {
-    return await LectionsService.getLesson(id)
-        .then(response => response.json())
-        .then(data => dispatch(setCurrentLectionAction(data))
-    )
-};
+export const setCurrentLection = (lection: LectionsType) => {
+    return setCurrentLectionAction(lection)
+}
+
+// export const setCurrentLection = (id: number) => async (dispatch: Dispatch<SetCurrentLectionType>) => {
+//     return await LectionsService.getLesson(id)
+//         .then(response => response.json())
+//         .then(data => dispatch(setCurrentLectionAction(data))
+//     )
+// };
 
 export const deleteLection = (lectionId: number) => async (dispatch: Dispatch<DeleteLectionType>) => {
     return await LectionsService.delete(lectionId)

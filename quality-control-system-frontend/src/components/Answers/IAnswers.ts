@@ -11,7 +11,3 @@ export interface DispatchPropsType {
     setUsers: () => void,
     setLections: () => void
 }
-
-export interface OwnProps {
-    
-}

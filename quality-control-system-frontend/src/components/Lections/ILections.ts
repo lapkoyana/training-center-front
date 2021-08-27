@@ -5,7 +5,7 @@ export type StatePropsType = {
 }
 
 export type DispatchPropsType = {
-    setLections: () => void,
+    setLections: (lections: Array<LectionsType>) => void,
     deleteLection: (lectionId: number) => void
-    setCurrentLection: (lectionId: number) => void
+    setCurrentLection: (lections: LectionsType) => void
 }

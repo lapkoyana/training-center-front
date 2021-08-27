@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { LoginType, LogoutType, RegisterSuccessType, RegisterFailType } from './../constants/index'
+import { SetCurrentUser, LogoutType, RegisterSuccessType, RegisterFailType } from './../constants/index'
 import AuthenticationService from "./../services/AuthenticationService";
 import {REGISTER_SUCCESS,
         REGISTER_FAIL,
@@ -24,7 +24,7 @@ export const register = (username: string, password: string) => (dispatch: Dispa
     );
 };
 
-export const login = (username: string, password: string) => async (dispatch: Dispatch<LoginType>) => {
+export const login = (username: string, password: string) => async (dispatch: Dispatch<SetCurrentUser>) => {
     return await AuthenticationService.login(username, password).then(
         (data) => {
             dispatch(loginAction(data))

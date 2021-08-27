@@ -20,6 +20,9 @@ export const ADD_ANSWERS = 'ADD-ANSWERS';
 export const SET_ANSWERS = 'SET-ANSWERS';
 export const SET_USERS = 'SET-USERS';
 
+export const SET_IS_LOGGED_IN = 'SET-IS-LOGGED-IN'
+export const SET_CURRENT_USER = 'SET-CURRENT-USER'
+
 export const SET_FILE = 'SET-FILE'
 
 export type LectionsType = {
@@ -205,12 +208,22 @@ export const addLectionAction = (lection: LectionsType): AddLectionType => ({
     lection
 })
 
-export type LoginType = {
-    type: typeof LOGIN_SUCCESS,
+export type SetCurrentUser = {
+    type: typeof SET_CURRENT_USER,
     payload: UserLoginType
 }
-export const loginAction = (payload: UserLoginType): LoginType => ({
-    type: LOGIN_SUCCESS,
+//здесь не только setcurrentuser, тут еще и isLoggedIn = true
+export const loginAction = (payload: UserLoginType): SetCurrentUser => ({
+    type: SET_CURRENT_USER,
+    payload
+})
+
+export type IIsLoggedIn = {
+    type: typeof SET_IS_LOGGED_IN,
+    payload: boolean
+}
+export const setIsLoggedIn = (payload: boolean): IIsLoggedIn => ({
+    type: SET_IS_LOGGED_IN,
     payload
 })
 
@@ -283,10 +296,8 @@ export interface IInitialState {
     students: {
         answers: Array<StudentAnswersType>,
         file: string | undefined
-        userLessons: {
-            lections: Array<LectionsType>,
-            userLessons: Array<UserLessonsType>,
-        }
+        lections: Array<LectionsType>,
+        userLessons: Array<UserLessonsType>
     }
 }
 
@@ -310,9 +321,7 @@ export const initialState: IInitialState = {
     students: {
         answers: [],
         file: undefined,
-        userLessons: {
-            lections: [],
-            userLessons: []
-        }
+        lections: [],
+        userLessons: []
     }
 }

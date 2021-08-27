@@ -1,8 +1,8 @@
 import { StatePropsType } from './IQuizPage'
-import { StateType } from '../../reducers';
+// import { StateType } from '../../reducers';
 
-export const mapStateToProps = (state: StateType): StatePropsType => {
+export const mapStateToProps = (state: any): StatePropsType => {
     return {
-        questions: state.question.questions
+        questions: state.qcsApp.question.questions
     }
 }
