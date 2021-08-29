@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { LectionsType } from '../../constants'
+import LectionsService from '../../services/LectionsService';
 import { StatePropsType, DispatchPropsType } from './ILectionEdit'
 
 type PathParamType = {id: string}
@@ -34,7 +35,12 @@ export class LectionEdit extends React.Component<PropsType, MyStateType> {
                 currentLection: this.props.currentLection
             })
         }
-    }
+
+        LectionsService.getLessons()
+        .then(response => response.json())
+        .then(data =>
+            this.props.setLections(data)
+        )    }
 
     handleTopic = (e: ChangeEvent<HTMLInputElement>) => {
         const currentLection = this.state.currentLection
@@ -86,8 +92,22 @@ export class LectionEdit extends React.Component<PropsType, MyStateType> {
             currentMethod = 'POST';
         }
 
-        this.props.addOrUpdateLection( currentMethod, formData, currentLection );
-
+        LectionsService.createOrUpdateLesson(currentMethod, formData)
+            .then(() => {
+                if (currentLection.id){
+                    this.props.setLections(this.props.lections.map(l => {
+                        if (l.id === currentLection.id){
+                            return currentLection
+                        }
+                        return l
+                    }))
+                } else {
+                    this.props.setLections(
+                        Array<LectionsType>(this.props.lections.push(currentLection)))
+                }
+    
+            })
+            
         this.props.history.push("/lections");
         window.location.reload();
     }

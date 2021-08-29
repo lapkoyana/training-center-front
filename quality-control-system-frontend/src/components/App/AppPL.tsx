@@ -5,14 +5,15 @@ import LectionsEdit from '../LectionEdit/LectionEdit'
 import React from 'react'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
-import Register from '../Register/Register'
+// import Register from '../Register/Register'
 import { history } from '../../helpers/history'
-import QuestionsContainer from '../Questions/Questions'
-import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
-import QuizPage from '../QuizPage/QuizPage'
+// import QuestionsContainer from '../Questions/Questions'
+// import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
+// import QuizPage from '../QuizPage/QuizPage'
 import Answers from '../Answers/Answers'
 import { UserLoginType } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './IApp'
+import AuthenticationService from '../../services/AuthenticationService'
 
 type PropsType = StatePropsType & DispatchPropsType
 
@@ -42,7 +43,9 @@ export class App extends React.Component<PropsType, StateType> {
   }
 
   logout = () => {
-    this.props.logout();
+    AuthenticationService.logout();
+    this.props.setCurrentUser(null);
+    this.props.setIsLoggedIn(false);
   }
 
   render() {
@@ -105,13 +108,13 @@ export class App extends React.Component<PropsType, StateType> {
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
+              {/* <Route exact path="/register" component={Register} /> */}
               <Route exact path='/lections' component={LectionsContainer} />
               <Route exact path='/lections/answers' component={Answers} />
-              <Route exact path='/lections/:id' component={LectionsEdit} />
-              <Route exact path='/lections/:id/questions' component={QuestionsContainer} />
+              {<Route exact path='/lections/:id' component={LectionsEdit} />
+              /*<Route exact path='/lections/:id/questions' component={QuestionsContainer} />
               <Route exact path='/lessons' component={LectionsPageForStudents} />
-              <Route exact path='/lessons/:id/questions' component={QuizPage} />
+              <Route exact path='/lessons/:id/questions' component={QuizPage} /> */}
             </Switch>
           </div>
         </div>

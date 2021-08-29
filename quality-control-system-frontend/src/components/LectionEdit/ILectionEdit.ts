@@ -2,8 +2,9 @@ import { LectionsType } from '../../constants'
 
 export type StatePropsType = {
     currentLection: LectionsType
+    lections: Array<LectionsType>
 }
 
 export type DispatchPropsType = {
-    addOrUpdateLection: (currentMethod: string, formData: any, currentLection: LectionsType) => void,
+    setLections: (lections: Array<LectionsType>) => void
 }

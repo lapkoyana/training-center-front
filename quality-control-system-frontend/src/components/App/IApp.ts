@@ -5,5 +5,6 @@ export type StatePropsType = {
 }
 
 export type DispatchPropsType = {
-    logout: () => void
+    setCurrentUser: (currentUser: UserLoginType | null) => void
+    setIsLoggedIn: (isLoggedIn: boolean) => void
 }

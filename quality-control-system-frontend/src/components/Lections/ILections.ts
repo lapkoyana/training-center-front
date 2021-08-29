@@ -6,6 +6,5 @@ export type StatePropsType = {
 
 export type DispatchPropsType = {
     setLections: (lections: Array<LectionsType>) => void,
-    deleteLection: (lectionId: number) => void
     setCurrentLection: (lections: LectionsType) => void
 }

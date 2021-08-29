@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Redirect } from 'react-router-dom';
+import AuthenticationService from '../../services/AuthenticationService';
 
 import { StatePropsType, DispatchPropsType } from './ILogin'
 
@@ -30,9 +31,12 @@ export class Login extends React.Component<PropsType, StateType> {
 
     handleLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        this.props.login(this.state.username, this.state.password)
-        
+        AuthenticationService.login(this.state.username, this.state.password).then(
+            (data) => {
+                this.props.setCurrentUser(data)
+                this.props.setIsLoggedIn(true)
+            })
+        // this.props.login(this.state.username, this.state.password)
     }
 
     render() {

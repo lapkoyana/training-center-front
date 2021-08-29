@@ -7,7 +7,7 @@ export interface StatePropsType {
 }
 
 export interface DispatchPropsType {
-    setAnswers: () => void,
-    setUsers: () => void,
-    setLections: () => void
+    setAnswers: (answers: Array<AnswersType>) => void,
+    setUsers: (users: Array<UsersType>) => void,
+    setLections: (lections: Array<LectionsType>) => void
 }

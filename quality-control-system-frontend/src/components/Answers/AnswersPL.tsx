@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { AnswersType } from '../../constants'
+import LectionsService from '../../services/LectionsService';
 import { StatePropsType, DispatchPropsType } from './IAnswers'
 
 type PropsType = StatePropsType & DispatchPropsType
@@ -14,22 +15,32 @@ type MyStateType = {
 
 export class Answers extends React.Component<PropsType, MyStateType> {
 
-    constructor(props: PropsType) {
-        super(props);
-
-        this.state = {
-            currentLessonValue: '',
-            currentUserValue: '',
-            currentLessonId: 0,
-            currentUserId: 0,
-            answers: []
-        };
+    state: MyStateType = {
+        currentLessonValue: '',
+        currentUserValue: '',
+        currentLessonId: 0,
+        currentUserId: 0,
+        answers: []
     }
 
     componentDidMount() {
-        this.props.setUsers();
-        this.props.setLections();
-        this.props.setAnswers();
+        LectionsService.getLessons()
+            .then(response => response.json())
+            .then(data => 
+                this.props.setLections(data)
+            )
+
+        LectionsService.getAnswers()
+            .then(response => response.json())
+            .then(data => 
+                this.props.setAnswers(data)
+            )
+
+        LectionsService.getStudents()
+            .then(response => response.json())
+            .then(data => 
+                this.props.setUsers(data)
+            )
 
         this.setState({
             currentLessonValue: this.props.lections[0].topic,

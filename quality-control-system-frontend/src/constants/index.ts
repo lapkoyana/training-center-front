@@ -210,21 +210,21 @@ export const addLectionAction = (lection: LectionsType): AddLectionType => ({
 
 export type SetCurrentUser = {
     type: typeof SET_CURRENT_USER,
-    payload: UserLoginType
+    currentUser: UserLoginType
 }
-//здесь не только setcurrentuser, тут еще и isLoggedIn = true
-export const loginAction = (payload: UserLoginType): SetCurrentUser => ({
+
+export const setCurrentUser = (currentUser: UserLoginType): SetCurrentUser => ({
     type: SET_CURRENT_USER,
-    payload
+    currentUser
 })
 
 export type IIsLoggedIn = {
     type: typeof SET_IS_LOGGED_IN,
-    payload: boolean
+    isLoggedIn: boolean
 }
-export const setIsLoggedIn = (payload: boolean): IIsLoggedIn => ({
+export const setIsLoggedIn = (isLoggedIn: boolean): IIsLoggedIn => ({
     type: SET_IS_LOGGED_IN,
-    payload
+    isLoggedIn
 })
 
 export type RegisterSuccessType = {type: typeof REGISTER_SUCCESS}
@@ -268,13 +268,7 @@ let initialAuth: IAuth = {
 if (currentUser1) {
     initialAuth = {
         isLoggedIn: true, 
-        currentUser: {
-            token: "",
-            type: "",
-            id: 0,
-            username: "",
-            roles: []
-        }
+        currentUser: currentUser1
     }
 } else {
     initialAuth = {
@@ -295,7 +289,7 @@ export interface IInitialState {
     }
     students: {
         answers: Array<StudentAnswersType>,
-        file: string | undefined
+        file: string | null
         lections: Array<LectionsType>,
         userLessons: Array<UserLessonsType>
     }
@@ -320,7 +314,7 @@ export const initialState: IInitialState = {
     },
     students: {
         answers: [],
-        file: undefined,
+        file: null,
         lections: [],
         userLessons: []
     }

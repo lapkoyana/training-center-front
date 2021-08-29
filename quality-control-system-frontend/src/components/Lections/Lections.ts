@@ -6,4 +6,4 @@ import { mapStateToProps } from './LectionsContainer'
 import { Lections } from "./LectionsPL";
 
 export default connect<StatePropsType, DispatchPropsType, {}, IInitialState>
-                (mapStateToProps, { setLections, deleteLection, setCurrentLection })(Lections);
+                (mapStateToProps, { setLections, setCurrentLection })(Lections);
