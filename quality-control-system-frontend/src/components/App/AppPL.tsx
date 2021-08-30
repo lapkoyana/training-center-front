@@ -7,9 +7,9 @@ import Home from '../Home/Home'
 import Login from '../Login/Login'
 // import Register from '../Register/Register'
 import { history } from '../../helpers/history'
-// import QuestionsContainer from '../Questions/Questions'
-// import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
-// import QuizPage from '../QuizPage/QuizPage'
+import Questions from '../Questions/Questions'
+import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
+import QuizPage from '../QuizPage/QuizPage'
 import Answers from '../Answers/Answers'
 import { UserLoginType } from '../../constants'
 import { StatePropsType, DispatchPropsType } from './IApp'
@@ -111,10 +111,10 @@ export class App extends React.Component<PropsType, StateType> {
               {/* <Route exact path="/register" component={Register} /> */}
               <Route exact path='/lections' component={LectionsContainer} />
               <Route exact path='/lections/answers' component={Answers} />
-              {<Route exact path='/lections/:id' component={LectionsEdit} />
-              /*<Route exact path='/lections/:id/questions' component={QuestionsContainer} />
+              <Route exact path='/lections/:id' component={LectionsEdit} />
               <Route exact path='/lessons' component={LectionsPageForStudents} />
-              <Route exact path='/lessons/:id/questions' component={QuizPage} /> */}
+              <Route exact path='/lections/:id/questions' component={Questions} />
+              <Route exact path='/lessons/:id/questions' component={QuizPage} />
             </Switch>
           </div>
         </div>

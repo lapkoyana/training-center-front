@@ -44,8 +44,8 @@ export type AnswersType = {
     dateOfReply: string,
     content: string,
     question: string,
-    userId: number,
-    lessonId: number
+    user: number,
+    lesson: number
 }
 
 export type QuestionsType = {

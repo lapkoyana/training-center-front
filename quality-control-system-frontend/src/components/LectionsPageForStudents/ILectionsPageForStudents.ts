@@ -1,12 +1,13 @@
-import { LectionsType } from '../../constants'
+import { LectionsType, UserLessonsType } from '../../constants'
 
 export type StatePropsType = {
     lections: Array<LectionsType>,
+    userLessons: Array<UserLessonsType>
     file: string | undefined
 }
 
 export type DispatchPropsType = {
-    setLections: () => void,
-    setUserLesson: () => void,
-    getLessonFile: (filename: string | undefined) => void
+    setLections: (lections: Array<LectionsType>) => void,
+    setUserLessons: (lections: Array<UserLessonsType>) => void,
+    setLessonFile: (filename: string | undefined) => void
 }

@@ -1,7 +1,7 @@
 const URL = "http://localhost:8080/auth/"
 
 class AuthService {
-    async login(username, password) {
+    async login(username: string, password: string) {
         return await fetch(URL + "signin", {
             method: 'POST',
             headers: {
@@ -23,7 +23,7 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
-    register(username, password) {
+    register(username: string, password: string) {
         return fetch(URL + "signup", {
             method: 'POST',
             headers: {

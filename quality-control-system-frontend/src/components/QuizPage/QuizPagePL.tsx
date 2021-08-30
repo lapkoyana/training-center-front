@@ -2,8 +2,9 @@ import React, { ChangeEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom';
 import { StatePropsType, DispatchPropsType } from './IQuizPage'
 import { StudentAnswersType } from '../../constants'
+import StudentService from '../../services/StudentService';
 
-type PathParamType = {lectionId: string}
+type PathParamType = {id: string}
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
@@ -17,11 +18,24 @@ export class QuizPage extends React.Component<PropsType, StateType> {
     }
 
     componentDidMount() {
-        this.props.setQuestions(Number.parseInt(this.props.match.params.lectionId));
+        this.getQuestions();
+    }
+
+    async getQuestions() {
+        await StudentService.getQuestions(Number.parseInt(this.props.match.params.id))
+        .then(response => response.json())
+        .then(data => 
+            this.props.setQuestions(data)
+        )
     }
 
     handleChange(e: ChangeEvent<HTMLTextAreaElement>, i: number) {
         let answers = this.state.answers;
+        if (answers[i] == undefined) {
+            answers.push({
+                content: ''
+            });
+        }
         answers[i].content = e.target.value
         this.setState({answers});
     }
@@ -33,9 +47,16 @@ export class QuizPage extends React.Component<PropsType, StateType> {
             answer.content = tmp;
             return answer;
         })
-        this.props.addAnswers(Number.parseInt(this.props.match.params.lectionId), answers);
+        this.addAnswers(Number.parseInt(this.props.match.params.id), answers)
         this.props.history.push("/lessons");
         window.location.reload();
+    }
+
+    async addAnswers(lessonId: number, answers: Array<StudentAnswersType>) {
+        await StudentService.addAnswers(lessonId, answers)
+            .then(() =>
+                this.props.setAnswers(answers)
+            )
     }
 
     render() {
@@ -45,7 +66,7 @@ export class QuizPage extends React.Component<PropsType, StateType> {
             {this.props.questions.map((q, index) => <div key={q.id}>
                 {console.log(index)}
                 <div>{q.content}</div>
-                <textarea onChange={(e) => {this.handleChange(e, index)}} value={answers[index].content}></textarea>
+                <textarea onChange={(e) => {this.handleChange(e, index)}} value={answers[index]?.content}></textarea>
             </div>)}
             <button onClick={this.handleClick}></button>
         </div>

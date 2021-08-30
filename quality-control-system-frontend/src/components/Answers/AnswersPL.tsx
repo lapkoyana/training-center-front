@@ -23,20 +23,20 @@ export class Answers extends React.Component<PropsType, MyStateType> {
         answers: []
     }
 
-    componentDidMount() {
-        LectionsService.getLessons()
+    async componentDidMount() {
+        await LectionsService.getLessons()
             .then(response => response.json())
             .then(data => 
                 this.props.setLections(data)
             )
 
-        LectionsService.getAnswers()
+        await LectionsService.getAnswers()
             .then(response => response.json())
             .then(data => 
                 this.props.setAnswers(data)
             )
 
-        LectionsService.getStudents()
+        await LectionsService.getStudents()
             .then(response => response.json())
             .then(data => 
                 this.props.setUsers(data)
@@ -68,8 +68,8 @@ export class Answers extends React.Component<PropsType, MyStateType> {
     handleClick = () => {
         const answers = this.props.answers;
         let currentAnswers = answers.filter(a => {
-            if(a.userId === this.state.currentUserId &&
-               a.lessonId === this.state.currentLessonId)
+            if(a.user === this.state.currentUserId &&
+               a.lesson === this.state.currentLessonId)
                 return true;
             else {return false;}
             })

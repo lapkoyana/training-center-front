@@ -36,7 +36,7 @@ export class Login extends React.Component<PropsType, StateType> {
                 this.props.setCurrentUser(data)
                 this.props.setIsLoggedIn(true)
             })
-        // this.props.login(this.state.username, this.state.password)
+        window.location.reload();
     }
 
     render() {

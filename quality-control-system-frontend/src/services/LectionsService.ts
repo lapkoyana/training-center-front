@@ -9,13 +9,13 @@ class LectionService {
         })
     };
 
-    getLesson(id) {
+    getLesson(id: number) {
         return fetch(URL + '/' + id, {
                 headers: authHeader()
             })
     }
 
-    createOrUpdateLesson(currentMethod, formData) {
+    createOrUpdateLesson(currentMethod: string, formData: any) {
         return fetch(URL, {
             method: currentMethod,
             headers: authHeader(),
@@ -23,7 +23,7 @@ class LectionService {
         });
     }
 
-    delete(id) {
+    delete(id: number) {
         return fetch(URL + '/' + id, {
             method: 'DELETE',
             headers: authHeader()

@@ -5,10 +5,7 @@ export type StatePropsType = {
 }
 
 export type DispatchPropsType = {
-    setQuestions: (lectionId: number) => void,
-    addQuestion: (lectionId: number, question: QuestionsType) => void,
-    deleteQuestion: (lectionId: number, questionId: number | undefined) => void,
-    updateQuestion: (lectionId: number, question: QuestionsType) => void
+    setQuestions: (questions: Array<QuestionsType>) => void,
 }
 
-export type PathParamType = {lectionId: string}
+export type PathParamType = {id: string}

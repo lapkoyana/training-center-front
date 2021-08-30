@@ -1,15 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import StudentService from '../../services/StudentService';
 import { StatePropsType, DispatchPropsType } from './ILectionsPageForStudents'
 
 export class LectionsPageForStudents extends React.Component<StatePropsType & DispatchPropsType> {
-    componentDidMount() {
-        this.props.setLections();
-        this.props.setUserLesson();
+    async componentDidMount() {
+        await StudentService.getLessons()
+            .then(response => response.json())
+            .then(data =>
+                this.props.setLections(data)
+            )
+
+        await StudentService.getUserLesson()
+            .then(response => response.json())
+            .then(data => 
+                this.props.setUserLessons(data)
+            )
+
+        this.props.setLections(this.props.lections.map(lesson => {
+            lesson.completeness = false;
+            this.props.userLessons.forEach(userLesson => {
+                if (lesson.id === userLesson['lessonId']){
+                    lesson.completeness = userLesson['signOfCompleteness'];
+                }
+            });
+            return lesson;
+        }))
     }
 
     handleClick = (filename: string ) => {
-        this.props.getLessonFile(filename);
+        this.getLessonFile(filename)
+    }
+
+    async getLessonFile(filename: string) {
+        await StudentService.getLessonFile(filename)
+        .then(response => response.blob())
+        .then(blob => 
+            this.props.setLessonFile(URL.createObjectURL(blob))
+            )
     }
 
     render() {

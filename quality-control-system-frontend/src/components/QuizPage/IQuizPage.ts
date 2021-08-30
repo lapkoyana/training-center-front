@@ -5,6 +5,6 @@ export type StatePropsType = {
 }
 
 export type DispatchPropsType = {
-    setQuestions: (lectionId: number) => void,
-    addAnswers: (lectionId: number, answers: Array<StudentAnswersType>) => void
+    setQuestions: (questions: Array<QuestionsType>) => void,
+    setAnswers: (answers: Array<StudentAnswersType>) => void
 }

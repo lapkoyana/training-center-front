@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { threadId } from 'worker_threads';
 import { LectionsType } from '../../constants'
 import LectionsService from '../../services/LectionsService';
 import { StatePropsType, DispatchPropsType } from './ILectionEdit'
@@ -8,7 +9,7 @@ type PathParamType = {id: string}
 
 type PropsType = StatePropsType & DispatchPropsType & RouteComponentProps<PathParamType>
 
-type MyStateType = {
+interface MyStateType {
     currentLection: LectionsType
     lectureFile: Blob | undefined
 }
@@ -16,17 +17,11 @@ type MyStateType = {
 export class LectionEdit extends React.Component<PropsType, MyStateType> {
     constructor(props: PropsType) {
         super(props);
+    }
 
-        this.state = {
-            currentLection: {
-                id: 0,
-                topic: '',
-                dateOfClass: '',
-                lectureFile: '',
-                signOfCompleteness: false
-            },
-            lectureFile: undefined
-          };
+    state: MyStateType = {
+        currentLection: this.props.currentLection,
+        lectureFile: undefined
     }
 
     componentDidMount() {
@@ -40,7 +35,16 @@ export class LectionEdit extends React.Component<PropsType, MyStateType> {
         .then(response => response.json())
         .then(data =>
             this.props.setLections(data)
-        )    }
+        )    
+    }
+
+    componentDidUpdate(prevProps: PropsType) {
+        if (prevProps.currentLection.id !== this.props.currentLection.id){
+            this.setState({
+                currentLection: this.props.currentLection
+            })
+        }
+    }
 
     handleTopic = (e: ChangeEvent<HTMLInputElement>) => {
         const currentLection = this.state.currentLection

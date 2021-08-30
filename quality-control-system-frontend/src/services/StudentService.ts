@@ -1,3 +1,4 @@
+import { StudentAnswersType } from "../constants";
 import authHeader from "./auth-header";
 
 const URL = "http://localhost:8080/lessons"
@@ -15,13 +16,13 @@ class StudentService {
         })
     }
 
-    getQuestions(lessonId) {
+    getQuestions(lessonId: number) {
         return fetch(URL + '/' + lessonId + '/questions', {
             headers: authHeader()
         })
     }
 
-    addAnswers(lessonId, answers) {
+    addAnswers(lessonId: number, answers: Array<StudentAnswersType>) {
         return fetch(URL + '/' + lessonId + '/questions', {
             method: 'POST',
             headers: authHeader({'Content-Type': 'application/json'}),
@@ -29,7 +30,7 @@ class StudentService {
         })
     }
 
-    getLessonFile(filename) {
+    getLessonFile(filename: string) {
         return fetch(URL + '/files/' + filename, {
             headers: authHeader()
         });
