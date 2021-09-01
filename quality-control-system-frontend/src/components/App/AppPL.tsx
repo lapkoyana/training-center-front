@@ -5,7 +5,7 @@ import LectionsEdit from '../LectionEdit/LectionEdit'
 import React from 'react'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
-// import Register from '../Register/Register'
+import Register from '../Register/Register'
 import { history } from '../../helpers/history'
 import Questions from '../Questions/Questions'
 import LectionsPageForStudents from '../LectionsPageForStudents/LectionsPageForStudents'
@@ -108,7 +108,7 @@ export class App extends React.Component<PropsType, StateType> {
             <Switch>
               <Route exact path={"/"} component={Home} />
               <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/register" component={Register} /> */}
+              <Route exact path="/register" component={Register} />
               <Route exact path='/lections' component={LectionsContainer} />
               <Route exact path='/lections/answers' component={Answers} />
               <Route exact path='/lections/:id' component={LectionsEdit} />

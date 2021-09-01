@@ -31,7 +31,7 @@ export class QuizPage extends React.Component<PropsType, StateType> {
 
     handleChange(e: ChangeEvent<HTMLTextAreaElement>, i: number) {
         let answers = this.state.answers;
-        if (answers[i] == undefined) {
+        if (answers[i] === undefined) {
             answers.push({
                 content: ''
             });

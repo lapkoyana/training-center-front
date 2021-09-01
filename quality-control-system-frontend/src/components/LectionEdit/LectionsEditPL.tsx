@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { threadId } from 'worker_threads';
 import { LectionsType } from '../../constants'
 import LectionsService from '../../services/LectionsService';
 import { StatePropsType, DispatchPropsType } from './ILectionEdit'
@@ -15,9 +14,6 @@ interface MyStateType {
 }
 
 export class LectionEdit extends React.Component<PropsType, MyStateType> {
-    constructor(props: PropsType) {
-        super(props);
-    }
 
     state: MyStateType = {
         currentLection: this.props.currentLection,

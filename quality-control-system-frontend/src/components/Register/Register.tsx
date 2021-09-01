@@ -1,12 +1,12 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { DispatchPropsType } from './IRegister'
+import AuthenticationService from '../../services/AuthenticationService';
 
 type StateType = {
     username: string,
     password: string,
 }
 
-export class Register extends React.Component<DispatchPropsType, StateType> {
+export class Register extends React.Component<{}, StateType> {
     state: StateType = {
         username: "",
         password: "",
@@ -26,9 +26,7 @@ export class Register extends React.Component<DispatchPropsType, StateType> {
 
     handleRegister = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-
-        this.props.register(this.state.username, this.state.password)
+        AuthenticationService.register(this.state.username, this.state.password)
     }
 
     render() {
@@ -47,3 +45,5 @@ export class Register extends React.Component<DispatchPropsType, StateType> {
         </form>
     }
 }
+
+export default Register

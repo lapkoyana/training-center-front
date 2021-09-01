@@ -1,4 +1,4 @@
-import { UserLessonsType, LectionsType, SetUserLessonType, SET_USER_LESSON } from '../../../constants'
+import { UserLessonsType, SetUserLessonType, SET_USER_LESSON } from '../../../constants'
 import { initialState } from './../../../constants/index';
 
 // eslint-disable-next-line import/no-anonymous-default-export
