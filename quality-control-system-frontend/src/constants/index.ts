@@ -54,8 +54,10 @@ export type UserLoginType = {
     token: string,
     type: string,
     id: number,
-    username: string
-    roles: Array<String>
+    username: string,
+    roles: Array<String>,
+    firstName: string,
+    lastName: string
 }
 
 export type SetLectionsType = {

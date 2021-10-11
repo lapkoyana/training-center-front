@@ -23,13 +23,13 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
-    register(username: string, password: string) {
+    register(username: string, password: string, firstName: string, lastName: string) {
         return fetch(URL + "signup", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username, password, firstName, lastName})
         });
     }
 }

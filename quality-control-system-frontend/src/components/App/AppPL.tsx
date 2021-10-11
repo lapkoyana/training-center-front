@@ -85,7 +85,7 @@ export class App extends React.Component<PropsType, StateType> {
 
             {currentUser ? (
               <span className="nav-item">
-                {currentUser.username}
+                {currentUser.firstName + " " + currentUser.lastName}
                 <a href="/login" onClick={this.logout}>
                   Выйти
                 </a>
